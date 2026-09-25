@@ -1,0 +1,9 @@
+participant,date,order,stack,U1,U2,U3,T1,T2,T3,rank_text,rank_audio,rank_paper,daily_pick,contested_agree,O1,O2
+P01,2026-07-11,text-audio-paper,stance:roberta-mnli; sum:bart; tts:coqui,4,4,3,4,4,4,1,3,2,text,yes,Links to the original articles.,Nothing much. Audio voice was a bit flat.
+P02,2026-07-11,audio-paper-text,stance:roberta-mnli; sum:bart; tts:coqui,5,4,5,4,,4,3,1,2,audio,yes,Honestly it's already fine.,Took a second to realise I could tap a story to expand it.
+P03,2026-07-12,paper-text-audio,stance:roberta-mnli; sum:bart; tts:coqui,4,3,4,3,3,4,1,1,3,text,no,Say how many sources each summary came from.,"I genuinely couldn't pick between reading and listening, sorry."
+P04,2026-07-12,audio-text-paper,stance:roberta-mnli; sum:bart; tts:coqui,2,2,1,1,2,3,1,2,3,text,yes,I don't think I can trust a summary I can't check. Show me the text it summarised.,It stated things confidently that I had no way to verify. That's the whole problem.
+P05,2026-07-13,paper-audio-text,stance:roberta-mnli; sum:bart; tts:coqui,4,4,4,4,4,4,2,1,3,audio,yes,Nothing,Nothing
+P06,2026-07-13,text-paper-audio,stance:roberta-mnli; sum:bart; tts:coqui,5,3,4,4,5,5,3,2,1,audio,yes,A note when a story only has one source. That would tell me a lot.,
+P07,2026-07-14,audio-paper-text,stance:roberta-mnli; sum:bart; tts:coqui,3,3,2,3,2,2,2,3,1,paper,no,Not sure. Maybe if I'd used it for a week I'd have a view.,The contested thing didn't land for me. Both versions read the same.
+P08,2026-07-14,text-audio-paper,stance:roberta-mnli; sum:bart; tts:coqui,5,5,5,5,4,5,2,1,3,audio,yes,"Nothing, I'd use it tomorrow.",Wanted to save a story for later and couldn't find a way.

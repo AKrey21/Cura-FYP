@@ -1,0 +1,102 @@
+[
+  {
+    "id": "a-bbc-fed",
+    "source": "BBC",
+    "url": "https://example.com/bbc/fed-rate-cut",
+    "title": "Federal Reserve signals first interest rate cut of the year",
+    "body": "The Federal Reserve has signalled it could begin cutting interest rates as soon as next quarter, after inflation data showed prices cooling faster than expected. Chair Jerome Powell said the central bank was gaining confidence that inflation is moving sustainably toward its two percent target. Markets rallied on the remarks, with the S&P 500 closing at a record high. Economists welcomed the move as a relief for borrowers and a boost for an economy that has slowed in recent months. Mortgage rates are expected to ease in anticipation of the cut.",
+    "published": "2026-06-10T07:10:00+00:00",
+    "source_kind": "news",
+    "image": "https://picsum.photos/seed/a-bbc-fed/800/500"
+  },
+  {
+    "id": "a-cnn-fed",
+    "source": "CNN",
+    "url": "https://example.com/cnn/fed-pivot",
+    "title": "Fed chair Powell hints at rate cut as inflation cools",
+    "body": "Jerome Powell strongly hinted that the Federal Reserve will lower interest rates soon, a hopeful and encouraging sign for households squeezed by years of expensive borrowing. The remarks delighted investors and sent stocks soaring to fresh records. Analysts praised the central bank for steering the economy toward a rare soft landing, with cheaper mortgages and car loans now in sight for millions of optimistic consumers.",
+    "published": "2026-06-10T07:40:00+00:00",
+    "source_kind": "news",
+    "image": "https://picsum.photos/seed/a-cnn-fed/800/500"
+  },
+  {
+    "id": "a-st-fed",
+    "source": "Straits Times",
+    "url": "https://example.com/st/fed-rate-risk",
+    "title": "Premature Fed rate cut could reignite inflation, economists warn",
+    "body": "A chorus of economists warned that the Federal Reserve risks a damaging policy mistake if it cuts interest rates prematurely. Critics said Jerome Powell's dovish remarks were dangerous and irresponsible while underlying inflation remains stubborn, warning that loosening now could reignite price pressures and destroy the bank's hard-won credibility. Some fear a repeat of the disastrous stop-go policy errors of the 1970s, with painful consequences for savers and emerging markets battered by a weaker dollar.",
+    "published": "2026-06-10T08:05:00+00:00",
+    "source_kind": "news",
+    "image": "https://picsum.photos/seed/a-st-fed/800/500"
+  },
+  {
+    "id": "a-reddit-fed",
+    "source": "Reddit r/news",
+    "url": "https://example.com/reddit/fed-thread",
+    "title": "Powell signals rate cuts are coming — what it means for your mortgage",
+    "body": "Discussion thread on the Federal Reserve signalling interest rate cuts. Many commenters are excited about cheaper mortgages while others are angry that savers lose out again.",
+    "published": "2026-06-10T09:00:00+00:00",
+    "source_kind": "social",
+    "image": "https://picsum.photos/seed/a-reddit-fed/800/500"
+  },
+  {
+    "id": "a-bbc-chip",
+    "source": "BBC",
+    "url": "https://example.com/bbc/chip-plant",
+    "title": "Singapore opens region's largest semiconductor plant",
+    "body": "Singapore has opened the region's largest semiconductor fabrication plant, a twelve billion dollar facility expected to create nine thousand skilled jobs. Officials hailed the project as a triumph for the country's advanced manufacturing strategy. The plant will produce cutting-edge chips for vehicles and data centres, strengthening supply chains across Southeast Asia. Industry leaders celebrated the opening as a milestone for the regional economy.",
+    "published": "2026-06-10T05:20:00+00:00",
+    "source_kind": "news",
+    "image": "https://picsum.photos/seed/a-bbc-chip/800/500"
+  },
+  {
+    "id": "a-cna-chip",
+    "source": "CNA",
+    "url": "https://example.com/cna/chip-fab",
+    "title": "New mega semiconductor fab opens in Singapore, creating 9,000 jobs",
+    "body": "A new mega semiconductor fabrication facility officially opened in Singapore on Tuesday, promising nine thousand new jobs and a major boost to the nation's technology sector. The twelve billion dollar plant was praised by analysts as a landmark win that cements Singapore's position in the global chip supply chain. Workers and industry groups welcomed the investment enthusiastically.",
+    "published": "2026-06-10T05:55:00+00:00",
+    "source_kind": "news",
+    "image": "https://picsum.photos/seed/a-cna-chip/800/500"
+  },
+  {
+    "id": "a-guardian-chip",
+    "source": "The Guardian",
+    "url": "https://example.com/guardian/chip-fab-opens",
+    "title": "Semiconductor giant opens vast new Singapore fab in supply chain push",
+    "body": "The vast new semiconductor fabrication plant opened in Singapore is being celebrated as a significant boost for regional supply chain resilience. The facility, among the largest in Asia, is expected to support thousands of well-paid engineering jobs and was welcomed by economists as a positive step for the technology sector.",
+    "published": "2026-06-10T06:30:00+00:00",
+    "source_kind": "news",
+    "image": "https://picsum.photos/seed/a-guardian-chip/800/500"
+  },
+  {
+    "id": "a-cnn-chip-dupe",
+    "source": "CNN",
+    "url": "https://example.com/cna/chip-fab?utm_source=twitter&utm_medium=social",
+    "title": "New mega semiconductor fab opens in Singapore, creating 9,000 jobs",
+    "body": "Syndicated copy of the CNA report on the new Singapore fabrication plant.",
+    "published": "2026-06-10T06:00:00+00:00",
+    "source_kind": "news",
+    "image": "https://picsum.photos/seed/a-cnn-chip-dupe/800/500"
+  },
+  {
+    "id": "a-st-heat",
+    "source": "Straits Times",
+    "url": "https://example.com/st/heatwave",
+    "title": "Record heatwave strains power grids across Southeast Asia",
+    "body": "A record-breaking heatwave is straining electricity grids across Southeast Asia, with temperatures exceeding forty degrees in several cities. Authorities warned of rolling blackouts as air-conditioning demand surged to dangerous, unprecedented levels. Hospitals reported a sharp rise in heatstroke cases, and schools in three countries were forced to close. Scientists said the punishing heat bears the clear fingerprint of climate change and warned of worse to come.",
+    "published": "2026-06-10T04:45:00+00:00",
+    "source_kind": "news",
+    "image": "https://picsum.photos/seed/a-st-heat/800/500"
+  },
+  {
+    "id": "a-cna-heat",
+    "source": "CNA",
+    "url": "https://example.com/cna/heatwave-grid",
+    "title": "Southeast Asia heatwave: power grids under severe strain as temperatures soar",
+    "body": "Power grids across Southeast Asia are under severe strain as a brutal heatwave drives electricity demand to record levels. Officials warned residents of possible outages and urged people to limit air-conditioning use during peak hours. The dangerous heat has disrupted transport and forced outdoor work to stop in several cities, with the elderly facing serious health risks.",
+    "published": "2026-06-10T05:05:00+00:00",
+    "source_kind": "news",
+    "image": "https://picsum.photos/seed/a-cna-heat/800/500"
+  }
+]

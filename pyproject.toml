@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cura"
+version = "0.1.0"
+description = "Cura — AI news intelligence: multi-source ingestion, summarisation, stance triangulation, and daily briefings"
+requires-python = ">=3.10"
+dependencies = [
+    "feedparser>=6.0",
+    "vaderSentiment>=3.3",
+    "scikit-learn>=1.3",
+    "numpy>=1.24",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "rouge-score>=0.1.2"]
+eval = ["rouge-score>=0.1.2"]
+# Full-article text extraction for live ingestion (RSS descriptions are thin)
+fulltext = ["trafilatura>=1.8"]
+# Stretch models — each evaluable against the light-stack baseline before adoption.
+# transformers v5 removed the "summarization" pipeline task — stay on 4.x.
+abstractive = ["transformers>=4.40,<5", "torch"]
+stance-transformer = ["transformers>=4.40,<5", "torch"]
+# Embedding-based event clustering (vs the TF-IDF leader baseline)
+embeddings = ["sentence-transformers>=2.7"]
+# Coqui's maintained fork (the original TTS package is dead and pins
+# Python <3.12); [codec] pulls torchcodec, required for audio IO on torch>=2.9
+tts = ["coqui-tts[codec]>=0.27"]
+# Live Cleo chat + Verify claim-checks in `cura serve` (needs ANTHROPIC_API_KEY)
+cleo = ["anthropic>=0.40"]
+
+[tool.setuptools.packages.find]
+include = ["cura*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

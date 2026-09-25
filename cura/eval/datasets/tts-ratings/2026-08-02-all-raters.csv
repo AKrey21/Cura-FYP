@@ -1,0 +1,61 @@
+rater,item,engine_a,engine_b,mos_a,mos_b,preference,environment
+R01,0,webspeech,coqui,3,3,A,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: Samantha | 
+R01,1,coqui,webspeech,4,3,A,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: Samantha | 
+R01,2,webspeech,coqui,3,4,B,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: Samantha | 
+R01,3,coqui,webspeech,4,3,A,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: Samantha | 
+R01,4,coqui,webspeech,4,2,A,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: Samantha | 
+R01,5,coqui,webspeech,4,3,A,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: Samantha | 
+R01,6,webspeech,coqui,3,3,A,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: Samantha | 
+R01,7,coqui,webspeech,4,2,A,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: Samantha | 
+R01,8,coqui,webspeech,3,3,A,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: Samantha | 
+R01,9,coqui,webspeech,4,3,A,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: Samantha | 
+R02,0,webspeech,coqui,3,4,B,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R02,1,coqui,webspeech,4,3,A,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R02,2,webspeech,coqui,4,4,tie,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R02,3,coqui,webspeech,3,3,tie,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R02,4,coqui,webspeech,4,4,A,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R02,5,coqui,webspeech,5,4,A,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R02,6,webspeech,coqui,2,5,B,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R02,7,coqui,webspeech,3,4,B,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R02,8,coqui,webspeech,4,3,A,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R02,9,coqui,webspeech,4,4,tie,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R03,0,webspeech,coqui,4,4,tie,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/125.0 Safari/537.36 | voice: Microsoft David - English (United States) | 
+R03,1,coqui,webspeech,4,4,A,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/125.0 Safari/537.36 | voice: Microsoft David - English (United States) | 
+R03,2,webspeech,coqui,4,5,B,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/125.0 Safari/537.36 | voice: Microsoft David - English (United States) | 
+R03,3,coqui,webspeech,5,4,A,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/125.0 Safari/537.36 | voice: Microsoft David - English (United States) | 
+R03,4,coqui,webspeech,5,3,A,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/125.0 Safari/537.36 | voice: Microsoft David - English (United States) | 
+R03,5,coqui,webspeech,5,4,A,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/125.0 Safari/537.36 | voice: Microsoft David - English (United States) | 
+R03,6,webspeech,coqui,4,5,B,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/125.0 Safari/537.36 | voice: Microsoft David - English (United States) | 
+R03,7,coqui,webspeech,4,3,A,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/125.0 Safari/537.36 | voice: Microsoft David - English (United States) | 
+R03,8,coqui,webspeech,5,2,A,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/125.0 Safari/537.36 | voice: Microsoft David - English (United States) | 
+R03,9,coqui,webspeech,5,5,B,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/125.0 Safari/537.36 | voice: Microsoft David - English (United States) | 
+R04,0,webspeech,coqui,4,4,A,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML; like Gecko) Version/17.5 Safari/605.1.15 | voice: unknown | 
+R04,1,coqui,webspeech,5,4,A,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML; like Gecko) Version/17.5 Safari/605.1.15 | voice: unknown | 
+R04,2,webspeech,coqui,4,4,B,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML; like Gecko) Version/17.5 Safari/605.1.15 | voice: unknown | 
+R04,3,coqui,webspeech,4,4,tie,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML; like Gecko) Version/17.5 Safari/605.1.15 | voice: unknown | 
+R04,4,coqui,webspeech,4,4,tie,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML; like Gecko) Version/17.5 Safari/605.1.15 | voice: unknown | 
+R04,5,coqui,webspeech,4,3,A,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML; like Gecko) Version/17.5 Safari/605.1.15 | voice: unknown | 
+R04,6,webspeech,coqui,3,4,B,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML; like Gecko) Version/17.5 Safari/605.1.15 | voice: unknown | 
+R04,7,coqui,webspeech,5,4,A,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML; like Gecko) Version/17.5 Safari/605.1.15 | voice: unknown | 
+R04,8,coqui,webspeech,4,3,A,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML; like Gecko) Version/17.5 Safari/605.1.15 | voice: unknown | 
+R04,9,coqui,webspeech,5,4,A,Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML; like Gecko) Version/17.5 Safari/605.1.15 | voice: unknown | 
+R05,0,webspeech,coqui,4,3,A,Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R05,1,coqui,webspeech,4,3,A,Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R05,2,webspeech,coqui,4,4,tie,Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R05,3,coqui,webspeech,4,3,A,Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R05,4,coqui,webspeech,4,3,A,Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R05,5,coqui,webspeech,4,2,A,Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R05,6,webspeech,coqui,4,4,A,Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R05,7,coqui,webspeech,4,4,A,Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R05,8,coqui,webspeech,5,3,A,Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R05,9,coqui,webspeech,5,3,A,Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R06,0,webspeech,coqui,3,4,A,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R06,1,coqui,webspeech,4,4,A,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R06,2,webspeech,coqui,4,4,B,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R06,3,coqui,webspeech,5,3,tie,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R06,4,coqui,webspeech,1,3,tie,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R06,5,coqui,webspeech,4,3,B,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R06,6,webspeech,coqui,2,1,A,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R06,7,coqui,webspeech,4,3,A,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R06,8,coqui,webspeech,4,2,A,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 
+R06,9,coqui,webspeech,5,4,tie,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML; like Gecko) Chrome/126.0 Safari/537.36 | voice: unknown | 

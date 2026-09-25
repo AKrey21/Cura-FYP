@@ -1,0 +1,53 @@
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.DS_Store
+briefing.txt
+briefing.json
+.env
+# Benchmark datasets are fetched, not vendored (copyrighted news text)
+cura/eval/datasets/*.json
+cura/eval/datasets/*.csv
+# Listening-test stimuli are regenerable (python -m cura export-tts-eval)
+cura/eval/datasets/tts-listening-test/
+cura/eval/datasets/tts-listening-test.zip
+# Report build junk: headless-Edge profiles + temp PDF from build_pdf.py
+report/_edge_tmp*/
+report/_print.tmp.pdf
+report/_stamped.tmp.pdf
+report/_pagenums.html
+report/_pagenums.pdf
+# Offline copies of cited sources: third-party PDFs, 165 MB, refetchable with
+# python report/fetch_references.py (the manifest + verification log are tracked)
+report/references-pdfs/*.pdf
+report/references-pdfs/_*/
+
+# Report build cache (rewritten by every `build_pdf.py --pdf`) and the
+# superseded August draft upload
+report/_toc_pages.json
+report/CuraFinalReport.pdf
+# Cited-paper PDFs held locally for fetch_references.py ("local" kind): third-
+# party material, 50 MB, not for a public repo. The verification log and
+# references-pdfs/manifest.json are the tracked record.
+report/references/*.pdf
+Thumbs.db
+# Working notes: kept on disk, not part of the project
+report.bat
+report/VIDEO-SCRIPT.md
+report/VIDEO-NARRATION.md
+report/acknowledgements.md
+report/Cura-Preliminary-Report.docx
+report/Cura-Preliminary-Report.pdf
+# The report (sources, build tooling, PDF) is submitted separately, not published here
+report/
+PROJECT-BRIEF.md
+design/*.pptx
+# Unused phone-frame mock-up and designer notes: kept on disk, not published
+design/Cura - iOS.html
+design/ios/
+design/components/ios.jsx
+design/README.md

@@ -1,8 +1,11 @@
 # Evaluation datasets
 
-Datasets are not vendored into the repo - download them and point the eval
-CLI at local copies. Document, in the report, exactly which split was used and
-its class balance.
+Third-party benchmarks (TweetEval, CNN/DailyMail) are not vendored: fetch
+them with the scripts here and point the eval CLI at the local copies. The
+project's own labelled packs (the headline stance sample, the triangulation
+annotation rounds, the clustering pairs) are tracked in this folder, so every
+result in `cura/eval/results/` can be recomputed. Document, in the report,
+exactly which split was used and its class balance.
 
 ## Stance / sentiment (macro-F1 vs VADER baseline)
 
@@ -23,7 +26,10 @@ Run: `python -m cura eval-stance --data path/to/stance.csv [--transformer]`
 The headline pack for the domain-gap check is generated with
 `python -m cura export-stance-pack` - a seeded blind sample from the
 rolling article store (`2026-08-02-stance-headlines-200.csv` here was
-drawn from the 2,232-article June store snapshot).
+drawn from the 2,232-article June store snapshot). Both copies are here:
+`2026-08-02-stance-headlines-200.csv` as exported and
+`2026-08-02-stance-headlines-200.Aaron-Filled-In.csv`, the author-labelled
+copy the headline result is computed from.
 
 ## Summarisation (ROUGE + faithfulness vs TextRank baseline)
 
@@ -41,10 +47,29 @@ Results from runs of this benchmark live in `cura/eval/results/`.
 
 ## Triangulation validation (human judgement)
 
-Collect ~30 multi-source story clusters from real runs, have 2–3 annotators
-label each "contested / not contested", then report agreement between the
-spread/entropy flags and the human majority (plus a threshold sweep /
-precision-recall curve over SPREAD_THRESHOLD and ENTROPY_THRESHOLD).
+Protocol and the round-by-round record: `cura/eval/results/triangulation-protocol.md`.
+The packs are here, exported blind by `python -m cura export-triangulation`
+(the metric's own spread/entropy/flag per cluster is kept apart in the
+`.model.json` so annotators never see it):
+
+- `2026-06-11-triangulation-annotate.csv` (author labels), `.claude.csv`
+  (the declared LLM judge's labels), `.model.json` - round 1.
+- `2026-06-11-triangulation-annotate-r2.csv`, `.claude.csv`, `.model.json` -
+  round 2, a fresh sample scored by the serving classifier.
+- `2026-08-03-triangulation-annotate-r2.claude-repeat.csv` - a blind repeat
+  pass by a fresh judge instance on 30 round-2 clusters (rater-ceiling check).
+
+Run: `python -m cura eval-triangulation --data <pack.csv> --model <pack.model.json> --sweep`.
+
+## Clustering (pair benchmark)
+
+`2026-06-11-clustering-pairs.csv` - 60 cross-outlet article pairs sampled
+adversarially from a live corpus and labelled same-event / not by the author
+(`.claude.csv`: the LLM judge's labels on the same pairs).
+`2026-06-11-clustering-pairs.snapshot.json` - the 1,084-article corpus
+snapshot (feed title and description per article) the pairs were drawn from,
+so the run reproduces exactly:
+`python -m cura eval-clustering --pairs <pairs.csv> --snapshot <snapshot.json>`.
 
 ## TTS
 

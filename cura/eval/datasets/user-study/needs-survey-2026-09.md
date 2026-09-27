@@ -90,10 +90,11 @@ Thank you.
   supplements the July user study, it is not pre-design research.
 - **Sample.** The eight July participants (P01–P08), matched by code so
   answers can sit beside the study rows without names.
-- **Consent.** By completion: the intro above is the information
-  preamble, and submitting the form after reading it is the consent
-  record. The July information sheet and consent form
-  (`participant-info-consent.html`) do not cover a follow-up on their own.
+- **Consent.** By completion after the WhatsApp message that carried the
+  link, which stated the purpose (follow-up to the July study, for the
+  project report) and that answers are anonymous by code. The form as sent
+  had no preamble. Storage and quotation follow the signed July sheet
+  (`participant-info-consent.html`).
 - **Question-to-requirement map.** Q1–Q5: a bounded catch-up, not an
   endless feed. Q6–Q7: the reader's choice of format. Q8–Q9: disagreement
   made visible; framing, not only tone. Q10: provenance the reader can
@@ -102,9 +103,9 @@ Thank you.
   percentages. Put the numbers in the requirements table (table rows do
   not count toward the chapter cap) and add one short paragraph saying what
   agreed with the literature and what did not.
-- **Delivery.** Online form, one section per question, intro text and
-  code field kept; link sent to each participant individually over
-  WhatsApp on 27 September 2026 with their code.
+- **Delivery.** Online form, one section per question, code field
+  first; link sent to each participant individually over WhatsApp on
+  27 September 2026 with their code and the purpose statement.
 - **Responses.** `needs-survey-responses.csv` beside this file, one row per
   participant: option text canonicalised for counting; "other" text, the
   two open answers and the participants' asides (`notes`) verbatim. Tally

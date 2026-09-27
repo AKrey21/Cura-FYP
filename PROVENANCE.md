@@ -108,6 +108,9 @@ The research contribution is the disagreement metric in
 | `user_study.py` | original | Likert medians and IQR, format rankings, contested-flag agreement, non-response and tie handling; needs-survey option counts |
 | `datasets/fetch_cnn_dailymail.py` | original | fetch script for a third-party dataset |
 | `datasets/fetch_tweeteval_sentiment.py` | original | fetch script for a third-party dataset |
+| `datasets/2026-08-02-stance-headlines-200*.csv` | original | blind headline pack and its author-labelled copy (deployment-domain stance sample) |
+| `datasets/2026-06-11-triangulation-annotate*`, `datasets/2026-08-03-*-claude-repeat.csv` | original | triangulation annotation packs: author labels, declared LLM-judge labels, and the metric's outputs kept apart |
+| `datasets/2026-06-11-clustering-pairs*` | original | 60 labelled cross-outlet pairs, the judge's labels, and the corpus snapshot they came from (feed titles and descriptions: third-party text, research use) |
 
 ## Interface (`web/`)
 
@@ -128,6 +131,7 @@ browser. Those packages and Google Fonts are the only third-party parts.
 | `tests/*.py` (conftest and 8 test files) | original | pytest suite |
 | `pyproject.toml` | original | packaging and optional extras |
 | `README.md` | original | project documentation |
+| `.github/workflows/ci.yml`, `daily-edition.yml` | original | CI (tests on two Python versions plus an offline smoke run) and the nightly static-edition publish to GitHub Pages |
 
 ## Third-party packages
 

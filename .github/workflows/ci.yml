@@ -1,0 +1,27 @@
+name: CI
+
+# push is limited to main so PR branches don't run every job twice
+# (pull_request already covers them)
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - run: pip install -e ".[dev]"
+      - run: pytest -q
+      - name: Offline pipeline smoke run
+        run: |
+          python -m cura run --input examples/sample_articles.json --format json > /tmp/briefing.json
+          python -c "import json; d=json.load(open('/tmp/briefing.json')); assert d['stories'] and d['briefing']"

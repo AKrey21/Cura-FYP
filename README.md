@@ -106,5 +106,8 @@ headline samples, triangulation human-judgement protocol):
    one-page newspaper renderer (`--format newspaper|audio`).
 3. ✅ Web delivery - `cura serve` runs the pipeline and serves the web
    interface with live data; Cleo/Verify proxy to the Anthropic API.
-   ⬜ Remaining: scheduling (cron the daily edition), mobile/iOS parity,
-   user accounts, and the evaluation runs on real benchmarks for the report.
+4. ✅ Scheduling - `.github/workflows/daily-edition.yml` rebuilds the edition
+   nightly and publishes it to GitHub Pages as a static site (`cura export-site`,
+   no server, no API key in the page); one-time setup: repo Settings → Pages →
+   Source: GitHub Actions.
+   ⬜ Remaining: mobile/iOS parity and user accounts.

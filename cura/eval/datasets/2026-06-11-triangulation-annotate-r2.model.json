@@ -1,0 +1,242 @@
+[
+  {
+    "id": "c-000",
+    "headline": "US and Iran exchange strikes across Middle East for second day in a row",
+    "n_sources": 12,
+    "spread": 0.2555,
+    "entropy": 0.7165,
+    "contested": false
+  },
+  {
+    "id": "c-050",
+    "headline": "Pressure on Turkey in World Cup clash against Australia, says Degenek",
+    "n_sources": 12,
+    "spread": 0.569,
+    "entropy": 0.944,
+    "contested": true
+  },
+  {
+    "id": "c-073",
+    "headline": "Anti-immigrant protesters clash with police, torch car at Belfast rally",
+    "n_sources": 10,
+    "spread": 0.0805,
+    "entropy": 0.4984,
+    "contested": false
+  },
+  {
+    "id": "c-268",
+    "headline": "Billionaire Taylor Swift Among Dozens Of Prominent Celebrities At The Knicks-Spurs NBA Finals Game 4",
+    "n_sources": 7,
+    "spread": 0.157,
+    "entropy": 0.6097,
+    "contested": false
+  },
+  {
+    "id": "c-013",
+    "headline": "Ukraine says missiles hit military plant deep inside Russia",
+    "n_sources": 7,
+    "spread": 0.2719,
+    "entropy": 0.6962,
+    "contested": false
+  },
+  {
+    "id": "c-046",
+    "headline": "India's TCS partners with Anthropic to drive enterprise AI scaling",
+    "n_sources": 7,
+    "spread": 0.2874,
+    "entropy": 0.7525,
+    "contested": false
+  },
+  {
+    "id": "c-012",
+    "headline": "First charges laid over deadly Hong Kong fire",
+    "n_sources": 6,
+    "spread": 0.4614,
+    "entropy": 0.7219,
+    "contested": true
+  },
+  {
+    "id": "c-043",
+    "headline": "Xi Jinping arrives in Pyongyang on trip to revitalise China-North Korea ties",
+    "n_sources": 6,
+    "spread": 0.2855,
+    "entropy": 0.7213,
+    "contested": false
+  },
+  {
+    "id": "c-227",
+    "headline": "Version of AI tool 'too powerful for public' released to public",
+    "n_sources": 6,
+    "spread": 0.3339,
+    "entropy": 0.8183,
+    "contested": true
+  },
+  {
+    "id": "c-014",
+    "headline": "US official claims banned referee had links with 'terror organisations'",
+    "n_sources": 6,
+    "spread": 0.3761,
+    "entropy": 0.8328,
+    "contested": true
+  },
+  {
+    "id": "c-097",
+    "headline": "NASA picks first European astronaut for Artemis mission",
+    "n_sources": 6,
+    "spread": 0.3365,
+    "entropy": 0.7227,
+    "contested": false
+  },
+  {
+    "id": "c-009",
+    "headline": "Bill Gates says Epstein wanted personal relationship, but he 'never reciprocated'",
+    "n_sources": 6,
+    "spread": 0.2512,
+    "entropy": 0.6865,
+    "contested": false
+  },
+  {
+    "id": "c-143",
+    "headline": "Mexico says \"the ball comes home\" as it prepares to host 2026 FIFA World Cup",
+    "n_sources": 6,
+    "spread": 0.4771,
+    "entropy": 0.9056,
+    "contested": true
+  },
+  {
+    "id": "c-059",
+    "headline": "Once an Arab oil embargo victim, US becomes world\u2019s top oil exporter",
+    "n_sources": 5,
+    "spread": 0.4306,
+    "entropy": 0.828,
+    "contested": true
+  },
+  {
+    "id": "c-145",
+    "headline": "FIFA's neutrality in question as Infantino cozies up to Trump",
+    "n_sources": 5,
+    "spread": 0.4956,
+    "entropy": 0.9207,
+    "contested": true
+  },
+  {
+    "id": "c-001",
+    "headline": "Trump says he 'loves the inflation' as US prices rise at fastest rate in three years",
+    "n_sources": 5,
+    "spread": 0.5505,
+    "entropy": 0.9803,
+    "contested": true
+  },
+  {
+    "id": "c-141",
+    "headline": "Wall Street counts down to SpaceX IPO",
+    "n_sources": 5,
+    "spread": 0.4397,
+    "entropy": 0.8232,
+    "contested": true
+  },
+  {
+    "id": "c-491",
+    "headline": "Bellingham at number 10? Will Saka start? It's decision time for Tuchel",
+    "n_sources": 4,
+    "spread": 0.264,
+    "entropy": 0.6317,
+    "contested": false
+  },
+  {
+    "id": "c-005",
+    "headline": "Fireworks illuminate Barcelona's Sagrada Fam\u00edlia during Pope visit",
+    "n_sources": 4,
+    "spread": 0.1615,
+    "entropy": 0.447,
+    "contested": false
+  },
+  {
+    "id": "c-068",
+    "headline": "US warns travellers about visiting Mexico ahead of World Cup 2026",
+    "n_sources": 4,
+    "spread": 0.4615,
+    "entropy": 0.8817,
+    "contested": true
+  },
+  {
+    "id": "c-220",
+    "headline": "Social media on trial: Four important cases to watch",
+    "n_sources": 4,
+    "spread": 0.345,
+    "entropy": 0.7836,
+    "contested": false
+  },
+  {
+    "id": "c-011",
+    "headline": "Pakistan launches deadly air strikes in Afghanistan, reigniting tensions",
+    "n_sources": 4,
+    "spread": 0.058,
+    "entropy": 0.4802,
+    "contested": false
+  },
+  {
+    "id": "c-048",
+    "headline": "Anunoby's game-winner biggest play in Knicks history, says coach Brown",
+    "n_sources": 4,
+    "spread": 0.2391,
+    "entropy": 0.5844,
+    "contested": false
+  },
+  {
+    "id": "c-058",
+    "headline": "South Korea fines Coupang $409 million in country's largest data breach penalty",
+    "n_sources": 4,
+    "spread": 0.1156,
+    "entropy": 0.6377,
+    "contested": false
+  },
+  {
+    "id": "c-252",
+    "headline": "Microsoft\u2019s Xbox plans major layoffs in July: Sources",
+    "n_sources": 4,
+    "spread": 0.3921,
+    "entropy": 0.8517,
+    "contested": true
+  },
+  {
+    "id": "c-075",
+    "headline": "OpenAI says China-based actors stoking opposition to AI data centres",
+    "n_sources": 4,
+    "spread": 0.256,
+    "entropy": 0.7106,
+    "contested": false
+  },
+  {
+    "id": "c-032",
+    "headline": "Man shot dead during protest against proposed US Ebola quarantine facility in Kenya",
+    "n_sources": 4,
+    "spread": 0.0738,
+    "entropy": 0.5891,
+    "contested": false
+  },
+  {
+    "id": "c-246",
+    "headline": "Oracle beats on earnings, but stock drops on plans to raise another $20 billion",
+    "n_sources": 4,
+    "spread": 0.2455,
+    "entropy": 0.7387,
+    "contested": false
+  },
+  {
+    "id": "c-286",
+    "headline": "Apple unveils Siri AI makeover as Tim Cook bids farewell",
+    "n_sources": 4,
+    "spread": 0.6222,
+    "entropy": 0.966,
+    "contested": true
+  },
+  {
+    "id": "c-006",
+    "headline": "Whale graveyard dating back five million years discovered",
+    "n_sources": 4,
+    "spread": 0.4419,
+    "entropy": 0.8851,
+    "contested": true
+  }
+]

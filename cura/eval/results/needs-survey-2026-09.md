@@ -23,12 +23,14 @@ The same convenience sample as the July study, re-using its participant
 codes so answers sit beside the study rows without names. The
 questionnaire went out as an online form, the link sent to each
 participant individually over WhatsApp on 27 September 2026 together with
-their code. Consent for this follow-up was given by completion: the form
-opened with an information preamble (purpose, five minutes, anonymous by
-code, voluntary, any question skippable, reported only as group counts),
-and submitting the form after reading it is the consent record. The July
-information sheet does not on its own cover a follow-up questionnaire, so
-this preamble, not that sheet, is the consent basis for the survey.
+their code. The form itself carried no preamble; the WhatsApp message
+that delivered it stated the survey's purpose (a follow-up to the July
+study, for the project report) and that answers are anonymous by code.
+Consent for this follow-up was given by completion after that message.
+Storage and quotation follow the terms of the July information sheet,
+which every participant had already signed: anonymised responses in the
+project repository, anonymised quotes in the report, withdrawal possible
+until submission.
 
 ## Results (counts of 8 unless stated)
 

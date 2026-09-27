@@ -9,9 +9,10 @@ dist/
 briefing.txt
 briefing.json
 .env
-# Benchmark datasets are fetched, not vendored (copyrighted news text)
-cura/eval/datasets/*.json
-cura/eval/datasets/*.csv
+# Third-party benchmark downloads are fetched, not vendored (copyrighted news
+# text); the project's own labelled packs in cura/eval/datasets/ are tracked
+cura/eval/datasets/cnn_dailymail_test_300.json
+cura/eval/datasets/tweeteval_sentiment_test_1000.csv
 # Listening-test stimuli are regenerable (python -m cura export-tts-eval)
 cura/eval/datasets/tts-listening-test/
 cura/eval/datasets/tts-listening-test.zip

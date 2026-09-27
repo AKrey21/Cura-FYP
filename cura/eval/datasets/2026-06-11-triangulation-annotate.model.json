@@ -1,0 +1,242 @@
+[
+  {
+    "id": "c-000",
+    "headline": "Tehran targets US Gulf bases after American forces launch new strikes on Iran",
+    "n_sources": 9,
+    "spread": 0.4338,
+    "entropy": 0.7544,
+    "contested": true
+  },
+  {
+    "id": "c-001",
+    "headline": "Trump says he 'loves the inflation' as US prices rise at fastest rate in three years",
+    "n_sources": 9,
+    "spread": 0.6974,
+    "entropy": 0.7303,
+    "contested": true
+  },
+  {
+    "id": "c-077",
+    "headline": "NASA picks first European astronaut for Artemis mission",
+    "n_sources": 6,
+    "spread": 0.3872,
+    "entropy": 0.1629,
+    "contested": true
+  },
+  {
+    "id": "c-046",
+    "headline": "Japan business mood sours in April-June as Middle East war hits",
+    "n_sources": 5,
+    "spread": 0.2331,
+    "entropy": 0.5388,
+    "contested": false
+  },
+  {
+    "id": "c-061",
+    "headline": "Colombian lawmakers seek suspension of Trump foe Gustavo Petro over alleged meddling in upcoming election",
+    "n_sources": 5,
+    "spread": 0.4745,
+    "entropy": 0.4872,
+    "contested": true
+  },
+  {
+    "id": "c-024",
+    "headline": "Trump targeting immigrants from countries hit most by climate shocks",
+    "n_sources": 5,
+    "spread": 0.6791,
+    "entropy": 0.6416,
+    "contested": true
+  },
+  {
+    "id": "c-068",
+    "headline": "On the Eve of the World Cup, U.S. Immigration Policy Turns Some Away",
+    "n_sources": 5,
+    "spread": 0.5125,
+    "entropy": 0.5628,
+    "contested": true
+  },
+  {
+    "id": "c-059",
+    "headline": "Canada introduces bill to ban social media for children under 16",
+    "n_sources": 5,
+    "spread": 0.4158,
+    "entropy": 0.5717,
+    "contested": true
+  },
+  {
+    "id": "c-120",
+    "headline": "AI giants' race to raise funds heats up as ChatGPT-owner plans stock market debut",
+    "n_sources": 5,
+    "spread": 0.4193,
+    "entropy": 0.4389,
+    "contested": true
+  },
+  {
+    "id": "c-058",
+    "headline": "Trump\u2019s claim of escorting oil through Hormuz won\u2019t ease crisis",
+    "n_sources": 5,
+    "spread": 0.1516,
+    "entropy": 0.636,
+    "contested": false
+  },
+  {
+    "id": "c-014",
+    "headline": "Analysis: Fox News is about to enter the true No Spin Zone",
+    "n_sources": 4,
+    "spread": 0.3869,
+    "entropy": 0.4942,
+    "contested": true
+  },
+  {
+    "id": "c-049",
+    "headline": "World\u2019s largest whale graveyard discovered by Chinese scientists",
+    "n_sources": 4,
+    "spread": 0.2608,
+    "entropy": 0.3111,
+    "contested": false
+  },
+  {
+    "id": "c-011",
+    "headline": "US official claims banned referee had links with 'terror organisations'",
+    "n_sources": 4,
+    "spread": 0.6525,
+    "entropy": 0.6882,
+    "contested": true
+  },
+  {
+    "id": "c-083",
+    "headline": "BYD powers past Geely as oil shock charges up global EV demand",
+    "n_sources": 4,
+    "spread": 0.6992,
+    "entropy": 0.5539,
+    "contested": true
+  },
+  {
+    "id": "c-028",
+    "headline": "\u2018Extreme fear\u2019 among immigrants as backlash sweeps South Africa",
+    "n_sources": 4,
+    "spread": 0.2208,
+    "entropy": 0.5732,
+    "contested": false
+  },
+  {
+    "id": "c-041",
+    "headline": "Health screening in Singapore: A more proactive approach to preventive care",
+    "n_sources": 4,
+    "spread": 0.7021,
+    "entropy": 0.7004,
+    "contested": true
+  },
+  {
+    "id": "c-036",
+    "headline": "Xi Jinping arrives in Pyongyang on trip to revitalise China-North Korea ties",
+    "n_sources": 4,
+    "spread": 0.2853,
+    "entropy": 0.3181,
+    "contested": false
+  },
+  {
+    "id": "c-109",
+    "headline": "Schumer: 'Trumpflation is getting worse and worse'",
+    "n_sources": 4,
+    "spread": 0.4494,
+    "entropy": 0.2939,
+    "contested": true
+  },
+  {
+    "id": "c-008",
+    "headline": "Bill Gates says Epstein wanted personal relationship, but he 'never reciprocated'",
+    "n_sources": 4,
+    "spread": 0.3841,
+    "entropy": 0.4337,
+    "contested": true
+  },
+  {
+    "id": "c-005",
+    "headline": "Fireworks illuminate Barcelona's Sagrada Fam\u00edlia during Pope visit",
+    "n_sources": 4,
+    "spread": 0.1319,
+    "entropy": 0.3647,
+    "contested": false
+  },
+  {
+    "id": "c-063",
+    "headline": "Belfast burns after Sudanese migrant arrested in brutal knife attack",
+    "n_sources": 4,
+    "spread": 0.0152,
+    "entropy": 0.7064,
+    "contested": false
+  },
+  {
+    "id": "c-066",
+    "headline": "In the Ukraine war, new ground-based drones are playing a key role on the battlefield",
+    "n_sources": 4,
+    "spread": 0.1129,
+    "entropy": 0.5854,
+    "contested": false
+  },
+  {
+    "id": "c-119",
+    "headline": "Version of AI tool 'too powerful for public' released to public",
+    "n_sources": 4,
+    "spread": 0.428,
+    "entropy": 0.3414,
+    "contested": true
+  },
+  {
+    "id": "c-038",
+    "headline": "South Korea fines Coupang $409 million in country's largest data breach penalty",
+    "n_sources": 3,
+    "spread": 0.056,
+    "entropy": 0.4545,
+    "contested": false
+  },
+  {
+    "id": "c-043",
+    "headline": "OpenAI considers drastic price cuts, anticipating war for users with Anthropic, WSJ reports",
+    "n_sources": 3,
+    "spread": 0.3389,
+    "entropy": 0.5832,
+    "contested": false
+  },
+  {
+    "id": "c-050",
+    "headline": "US warns travellers about visiting Mexico ahead of World Cup 2026",
+    "n_sources": 3,
+    "spread": 0.8161,
+    "entropy": 0.8213,
+    "contested": true
+  },
+  {
+    "id": "c-040",
+    "headline": "K-pop icons BigBang to perform in Singapore in October as part of reunion tour",
+    "n_sources": 3,
+    "spread": 0.146,
+    "entropy": 0.3399,
+    "contested": false
+  },
+  {
+    "id": "c-002",
+    "headline": "The furious dispute over what caused Air India flight 171 to crash",
+    "n_sources": 3,
+    "spread": 0.5747,
+    "entropy": 0.5823,
+    "contested": true
+  },
+  {
+    "id": "c-010",
+    "headline": "First charges laid over deadly Hong Kong fire",
+    "n_sources": 3,
+    "spread": 0.1901,
+    "entropy": 0.4934,
+    "contested": false
+  },
+  {
+    "id": "c-044",
+    "headline": "Maybank says it is not under investigation in Indonesia after staff questioned",
+    "n_sources": 3,
+    "spread": 0.3838,
+    "entropy": 0.3821,
+    "contested": true
+  }
+]

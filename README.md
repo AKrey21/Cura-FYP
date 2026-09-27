@@ -1,112 +1,144 @@
-# Cura - AI news intelligence
+# Cura
 
-Final-year project ("Orchestrating AI Models" template). Cura orchestrates
-summarisation, stance classification, and text-to-speech into a single
-pipeline, turning multi-source coverage of chosen topics into a personalised
-~5-minute daily briefing - text, audio, or a one-page newspaper.
+Cura reads the day's news from many outlets, works out where they agree and
+where they don't, and turns the result into a five-minute briefing you can
+read, listen to, or skim as a one-page paper.
 
-The research contribution is the **orchestration** plus **cross-source stance
-triangulation**: for stories covered by two or more sources, the pipeline
-quantifies disagreement (spread of a signed stance score + label-distribution
-entropy) and flags contested coverage. Every model choice is justified against
-a baseline on a benchmark - see [`web/README.md`](web/README.md) for the data
-shapes the pipeline hands to the interface.
+It is my final-year project for the University of London CM3070 module, built
+under the "Orchestrating AI Models" template. The pipeline chains three kinds
+of model, each with a simple baseline and a heavier alternative that only
+replaces the baseline if it wins on a benchmark. The part I would call my own
+is the triangulation step: for any story covered by two or more outlets, Cura
+measures how far their stances diverge and flags the story as contested, and
+the report tests how well that flag matches human judgement.
 
-## Pipeline
+## What it does
 
-```
-choose topics → ingest (RSS + Reddit) → dedupe → cluster by event
-             → summarise (TextRank, ↗ BART/Pegasus)
-             → stance   (VADER,    ↗ fine-tuned RoBERTa)
-             → triangulate disagreement (spread + entropy → "contested")
-             → assemble ~5-min briefing → render (text now; audio/newspaper next)
-```
+1. Pulls articles from 72 RSS feeds across 51 outlets, plus Reddit's public
+   listing endpoints, into a rolling 72-hour store.
+2. Removes duplicates and groups articles into events. Two articles only join
+   the same event if they share named entities, which stops unrelated stories
+   with similar wording from merging.
+3. Summarises each event (TextRank by default; BART if installed).
+4. Classifies each outlet's stance (VADER by default; a fine-tuned RoBERTa if
+   installed) with calibrated class probabilities.
+5. Measures disagreement per event as the spread of stance scores plus the
+   entropy of the vote, and flags contested coverage.
+6. Assembles a briefing that fits about five minutes of narration and renders
+   it three ways: a sectioned text feed, narrated audio with a synced
+   transcript, and a single broadsheet page.
 
-Each model sits behind a small protocol so baselines and stretch models are
-swappable and evaluable in isolation; the orchestrator falls back to the
-baseline if a stretch model fails, and records per-stage latency for the
-system evaluation.
+If a heavier model fails to load or errors at run time, the orchestrator
+falls back to the baseline and records that it did so, along with the time
+each stage took.
 
-## Quickstart - run the whole app
+## Running it
+
+Python 3.10 or newer.
 
 ```bash
-# one-time setup
-python3 -m venv .venv && .venv/bin/pip install -e ".[dev]"
-
-# one line: ingest live news (RSS + Reddit), run the AI pipeline,
-# open the Cura web app in your browser with today's real edition
+python -m venv .venv
+.venv/bin/pip install -e ".[dev]"
 .venv/bin/python -m cura serve
 ```
 
-That starts the full product: live multi-source ingestion → dedupe → event
-clustering → summarisation → stance → triangulation, rendered in the
-high-fidelity UI (Read / Listen / Experience / Verify / Cleo). The edition
-re-runs every 15 minutes. Variants:
+On Windows, `.\cura` does the same as the last line.
+
+`serve` fetches live news, runs the pipeline, and opens the web app on
+today's edition. The edition rebuilds itself every 15 minutes while the
+server runs. Useful variations:
 
 ```bash
-.venv/bin/python -m cura serve --topics technology economy   # personalised
-.venv/bin/python -m cura serve --input examples/sample_articles.json  # offline demo
-export ANTHROPIC_API_KEY=sk-ant-...   # + pip install -e ".[cleo]"
-.venv/bin/python -m cura serve        # Cleo chat + Verify answer with a real LLM
+.venv/bin/python -m cura serve --topics technology economy      # only these topics
+.venv/bin/python -m cura serve --input examples/sample_articles.json   # offline, fixture data
+.venv/bin/python -m cura serve --light                          # baselines only, fast start
+.venv/bin/python -m cura present                                # guided-tour demo mode
 ```
 
-**What's free vs paid:** news ingestion (RSS feeds + Reddit's public JSON),
-the NLP pipeline (TextRank, VADER, clustering, triangulation), and the Listen
-narration (browser Web Speech API) all cost nothing and need no keys. The
-only paid piece is **Cleo chat / Verify claim-checking**, which needs an
-Anthropic API key (Console billing, pay-per-token; a Claude Pro/Max plan does
-not include API keys). Without a key those two features run in the
-interface's scripted demo mode - everything else is fully live.
+Installing an optional extra is all it takes for `serve` to use it:
 
-### CLI output formats (no server)
+| Extra | Adds |
+|---|---|
+| `abstractive` | BART summaries |
+| `stance-transformer` | fine-tuned RoBERTa stance classifier |
+| `embeddings` | sentence-embedding clustering |
+| `fulltext` | full article text instead of feed descriptions |
+| `tts` | Coqui neural narration rendered on the server |
+| `cleo` | Cleo, the in-app assistant, and the Verify claim checker |
+
+Everything except Cleo and Verify runs with no keys and no cost. Those two
+call the Anthropic API and need `ANTHROPIC_API_KEY` set; without it they fall
+back to a scripted demo and the rest of the app is unaffected.
+
+Without the server, `run` produces a briefing from the command line:
 
 ```bash
-.venv/bin/python -m cura run --topics technology                     # text feed
-.venv/bin/python -m cura run --input examples/sample_articles.json --format json       # UI contract JSON
+.venv/bin/python -m cura run --topics technology
 .venv/bin/python -m cura run --input examples/sample_articles.json --format newspaper --out daily.html
 .venv/bin/python -m cura run --input examples/sample_articles.json --format audio --out brief.html
+.venv/bin/python -m cura run --input examples/sample_articles.json --format json
 ```
 
-## Evaluation harness
+`export-site` writes the day's edition as a static site with no server and no
+key in the page, for hosting anywhere.
+
+## Evaluation
+
+Every model choice in the serving stack rests on a measured comparison, and
+the data behind each result is in the repo so the numbers can be recomputed.
+
+| Stage | Result |
+|---|---|
+| Stance | RoBERTa macro-F1 0.712 vs VADER 0.528 on TweetEval; 0.697 vs 0.493 on 200 hand-labelled headlines. Adopted. |
+| Summarisation | BART beats TextRank on ROUGE but scores 0.895 on the faithfulness check where extractive output scores 1.000. Rejected as default. |
+| Clustering | TF-IDF pair F1 0.950, a statistical tie with sentence embeddings, so the lighter one stays. |
+| Triangulation | The contested flag agrees with my own labels at κ 0.533 at its best threshold. Under a tightened protocol two raters agree at κ 0.724 while the flag reaches κ 0.085, so stance dispersion captures part of what readers call contested, not all of it. |
+| Narration | Coqui scores 0.73 MOS above the browser's Web Speech voice in a blind listening test. Adopted. |
+| Users | Eight participants; usefulness median 4 of 5; audio the preferred daily format. |
+| System | About 96% of end-to-end time is network fetching; the pipeline itself is fast. |
+
+The commands:
 
 ```bash
-# Stance: macro-F1 + per-class metrics + confusion matrix, VADER baseline
-.venv/bin/python -m cura eval-stance --data labelled.csv [--transformer]
-
-# Summarisation: ROUGE-1/2/L + faithfulness (grounded-bigram precision)
-.venv/bin/python -m cura eval-summary --data pairs.json [--abstractive]
+.venv/bin/python -m cura eval-stance --data <labelled.csv> [--transformer]
+.venv/bin/python -m cura eval-summary --data <pairs.json> [--abstractive]
+.venv/bin/python -m cura eval-clustering --pairs <pairs.csv> --snapshot <snapshot.json>
+.venv/bin/python -m cura eval-triangulation --data <pack.csv> --model <pack.model.json> --sweep
+.venv/bin/python -m cura eval-tts --data <ratings.csv>
+.venv/bin/python -m cura eval-user-study
+.venv/bin/python -m cura eval-latency --input examples/sample_articles.json --runs 5
 ```
 
-Dataset formats and suggested benchmarks (SemEval, CNN/DailyMail, hand-labelled
-headline samples, triangulation human-judgement protocol):
-[`cura/eval/datasets/README.md`](cura/eval/datasets/README.md).
+Datasets, annotation packs, and protocols are described in
+[cura/eval/datasets/README.md](cura/eval/datasets/README.md); results and
+the round-by-round record are in `cura/eval/results/`. Third-party
+benchmarks (TweetEval, CNN/DailyMail) are fetched by script rather than
+committed.
 
 ## Layout
 
-| Path | What |
+| Path | Contents |
 |---|---|
-| `web/` | The web interface (React, served by `cura serve`) and the data shapes it expects |
-| `cura/ingest/` | RSS + Reddit ingestion, URL/title dedupe, TF-IDF event clustering |
-| `cura/summarize/` | TextRank baseline; optional abstractive (`pip install -e ".[abstractive]"`) |
-| `cura/stance/` | VADER baseline; optional transformer (`".[stance-transformer]"`) |
-| `cura/triangulate/` | Disagreement metrics: stance-score spread, label entropy, contested flag |
-| `cura/briefing/` | ~5-minute assembly + text and newspaper renderers (emits `Story` / `CURA_BRIEFING` shapes) |
-| `cura/tts/` | Web Speech audio-player baseline; optional Coqui server TTS (`".[tts]"`) |
-| `cura/orchestrator.py` | Stage sequencing, graceful fallback, latency report |
-| `cura/server.py` | `cura serve`: serves the web interface with live pipeline data + Cleo API proxy |
-| `cura/eval/` | Stance / summary metric harnesses + dataset guide |
-| `examples/` | Offline article fixture (multi-source, one deliberately contested story) |
-| `tests/` | pytest suite (all offline) |
+| `cura/ingest/` | RSS and Reddit ingestion, the rolling store, dedupe, coverage expansion, event clustering |
+| `cura/summarize/` | TextRank, optional BART |
+| `cura/stance/` | VADER, optional RoBERTa |
+| `cura/triangulate/` | the disagreement metric and contested flag |
+| `cura/briefing/` | briefing assembly and the text and newspaper renderers |
+| `cura/tts/` | Web Speech player and optional Coqui narration |
+| `cura/orchestrator.py` | stage sequencing, fallback, per-stage timing |
+| `cura/server.py` | the web server and the Cleo proxy |
+| `cura/eval/` | evaluation harnesses, datasets, results |
+| `web/` | the React interface; its README lists the data shapes the pipeline must produce |
+| `examples/` | an offline fixture with one deliberately contested story |
+| `tests/` | pytest suite, all offline |
 
-## Status / build order
+`PROVENANCE.md` classifies every source file as original, adapted, or a thin
+wrapper around a library, and names the papers the adapted algorithms come
+from.
 
-1. ✅ **Core path** - ingestion → summarise → stance → triangulation → text
-   briefing, with stance + summarisation eval harnesses and per-stage latency.
-2. ✅ Audio (Web Speech player baseline, optional Coqui server TTS) and the
-   one-page newspaper renderer (`--format newspaper|audio`).
-3. ✅ Web delivery - `cura serve` runs the pipeline and serves the web
-   interface with live data; Cleo/Verify proxy to the Anthropic API.
-4. ✅ Scheduling - the served edition cache refreshes itself, and
-   `cura export-site` writes the day's edition as a static site (no server,
-   no API key in the page) for any host or cron of your own.
-   ⬜ Remaining: mobile/iOS parity and user accounts.
+## Status
+
+The core pipeline, all three output formats, the web app, and the evaluation
+studies are complete. Not done: a mobile layout beyond responsive CSS, and
+user accounts. Personalisation stops at topic selection and on-demand
+editions.

@@ -131,7 +131,7 @@ browser. Those packages and Google Fonts are the only third-party parts.
 | `tests/*.py` (conftest and 8 test files) | original | pytest suite |
 | `pyproject.toml` | original | packaging and optional extras |
 | `README.md` | original | project documentation |
-| `.github/workflows/ci.yml`, `daily-edition.yml` | original | CI (tests on two Python versions plus an offline smoke run) and the nightly static-edition publish to GitHub Pages |
+| `.github/workflows/ci.yml` | original | CI: tests on two Python versions plus an offline smoke run |
 
 ## Third-party packages
 

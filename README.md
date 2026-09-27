@@ -83,7 +83,7 @@ key in the page, for hosting anywhere.
 
 ## Evaluation
 
-Each result below comes from a script in the repo, with the data committed so the numbers can be recomputed.
+Each result below comes from a script in the repo, with the data committed or fetched by script, so the numbers can be recomputed.
 
 | Stage | Result |
 |---|---|

@@ -1,10 +1,10 @@
 # PROVENANCE: ORIGINAL - one-page newspaper HTML/CSS renderer (design tokens
-# from design/HANDOFF.md). Third-party: Google Fonts via CDN at render time.
+# from web/README.md). Third-party: Google Fonts via CDN at render time.
 # See PROVENANCE.md.
 """Render a Briefing as "The Cura Daily" - the one-page newspaper modality.
 
 Self-contained HTML (no build step, fonts from Google Fonts) using the design
-tokens from design/HANDOFF.md: paper/ink palette, Fraunces serif headlines,
+tokens from web/README.md: paper/ink palette, Fraunces serif headlines,
 Inter body, JetBrains Mono eyebrows, masthead with double rule, drop-cap lead.
 Print-friendly: the visible state is the base style (no entrance animations).
 """

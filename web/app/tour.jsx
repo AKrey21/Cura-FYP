@@ -1,4 +1,4 @@
-// PROVENANCE: ORIGINAL (bespoke to Cura) - React/JSX prototype component; an
+// PROVENANCE: ORIGINAL (bespoke to Cura) - React/JSX interface component; an
 // in-app guided product tour for the demo video. Third-party (CDN): React 18,
 // ReactDOM, Babel standalone. See PROVENANCE.md.
 // Cura - Guided tour: a click-through walkthrough that spotlights each feature
@@ -8,7 +8,6 @@
 // Start it any of these ways:
 //   • press "t"  (when not typing in a field)
 //   • load the app with  ?tour=1
-//   • Tweaks panel → "▶ Guided tour"
 //   • console: window.curaStartTour()
 // Drive it: Next button, or → / Space / Enter ; Back or ← ; Esc to exit.
 // The spotlight is click-through, so you can still operate the app underneath.

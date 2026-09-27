@@ -1,4 +1,4 @@
-// PROVENANCE: ORIGINAL (bespoke to Cura) - React/JSX prototype component; the product spec (see design/HANDOFF.md). Third-party (CDN): React 18, ReactDOM, Babel standalone. Verify claim-checker calls window.claude (LLM) with a fallback. See PROVENANCE.md.
+// PROVENANCE: ORIGINAL (bespoke to Cura) - React/JSX interface component; data shapes in web/README.md. Third-party (CDN): React 18, ReactDOM, Babel standalone. Verify claim-checker calls window.claude (LLM) with a fallback. See PROVENANCE.md.
 // Cura - Read view (curated feed) + Story detail + Verify (source comparison)
 
 const { useState: useStateR } = React;
@@ -21,7 +21,7 @@ function SaveButton({ id, size = 13, ghost = true, label }) {
 }
 
 // Live build progress for the curating screen. Polls /api/status (served by
-// `cura serve`) and renders a weighted loading bar; in the static prototype /
+// `cura serve`) and renders a weighted loading bar; in the static
 // export there's no endpoint, so it degrades to the original curating line.
 function CuratingStatus() {
   const [prog, setProg] = React.useState(window.CURA_PROGRESS || null);
@@ -908,7 +908,7 @@ function ClaimChecker() {
 
 function VerifyView({ goBack }) {
   // Live edition: compare the most contested story, framed per-source by the
-  // stance classifier. Prototype: the canned Fed comparison.
+  // stance classifier. Offline demo: the canned Fed comparison.
   const live = window.CURA_LIVE && window.CURA_LIVE.compare;
   const cols = live ? live.sources : COMPARE_SOURCES;
   const subject = live ? live.headline : 'Fed signals first rate cut of the year';

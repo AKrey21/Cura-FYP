@@ -196,7 +196,6 @@ def test_export_site_is_static_and_tokenless(sample_articles, tmp_path):
     assert (site / "audio" / "000.wav").exists()
     # The app's modules travel with the page
     assert (site / "app" / "read.jsx").exists()
-    assert (site / "components" / "tweaks-panel.jsx").exists()
     assert (site / ".nojekyll").exists()
     # No key in this environment -> no editorial baked, wire edition ships
     assert report["editorial"] is False and report["stories"] > 0

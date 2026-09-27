@@ -1,10 +1,10 @@
-// PROVENANCE: ORIGINAL (bespoke to Cura) - React/JSX prototype component; the product spec (see design/HANDOFF.md). Third-party (CDN): React 18, ReactDOM, Babel standalone. See PROVENANCE.md.
+// PROVENANCE: ORIGINAL (bespoke to Cura) - React/JSX interface component; data shapes in web/README.md. Third-party (CDN): React 18, ReactDOM, Babel standalone. See PROVENANCE.md.
 // Cura - App shell (sidebar, topbar, layout)
 
 const { useState } = React;
 
 // Edition facts shown across the chrome: live values when served by
-// `cura serve` (CURA_LIVE), canned prototype defaults otherwise.
+// `cura serve` (CURA_LIVE), canned sample defaults otherwise.
 function editionMeta() {
   const live = window.CURA_LIVE;
   const count = (window.CURA_STORIES || []).length || 9;

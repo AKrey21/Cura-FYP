@@ -1,4 +1,4 @@
-// PROVENANCE: ORIGINAL (bespoke to Cura) - React/JSX prototype component; the product spec (see design/HANDOFF.md). Third-party (CDN): React 18, ReactDOM, Babel standalone. Canned sample story/briefing data; replaced at runtime by the live pipeline (window.CURA_LIVE). See PROVENANCE.md.
+// PROVENANCE: ORIGINAL (bespoke to Cura) - React/JSX interface component; data shapes in web/README.md. Third-party (CDN): React 18, ReactDOM, Babel standalone. Canned sample story/briefing data; replaced at runtime by the live pipeline (window.CURA_LIVE). See PROVENANCE.md.
 // Cura - story + source data
 
 const CURA_STORIES = [

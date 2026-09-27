@@ -1,5 +1,5 @@
 # PROVENANCE: ORIGINAL - local web server, background EditionCache, live-data
-# injection into the prototype, and the Cleo/editorial endpoints. Third-party:
+# injection into the interface, and the Cleo/editorial endpoints. Third-party:
 # http.server (stdlib); the anthropic SDK for the optional Cleo proxy. See PROVENANCE.md.
 """Cura web server - one command to run the whole product locally.
 
@@ -7,7 +7,7 @@
     python -m cura serve --topics technology   # personalised
     python -m cura serve --input examples/sample_articles.json   # offline demo
 
-Serves the high-fidelity prototype from design/ and injects the live
+Serves the web interface from web/ and injects the live
 pipeline output into it:
 
 - `window.CURA_LIVE` is inlined into the page (stories + briefing transcript
@@ -15,7 +15,7 @@ pipeline output into it:
   app/data.jsx loads, so the UI renders today's edition unchanged.
 - `window.claude.complete` (used by Cleo chat and the Verify claim-checker)
   is wired to POST /api/cleo, which proxies to the Anthropic API when
-  ANTHROPIC_API_KEY is set. Without a key the prototype's offline "demo
+  ANTHROPIC_API_KEY is set. Without a key the interface's offline "demo
   mode" fallback takes over gracefully.
 
 Endpoints: GET / (app), GET /api/edition (UI-contract JSON),
@@ -38,8 +38,8 @@ from cura.contracts import Article
 from cura.orchestrator import Pipeline
 from cura.progress import ProgressReporter, build_printer
 
-DESIGN_DIR = Path(__file__).resolve().parent.parent / "design"
-DESKTOP_HTML = "Cura - Desktop.html"
+WEB_DIR = Path(__file__).resolve().parent.parent / "web"
+INDEX_HTML = "index.html"
 # Cheapest model on the API ($1/$5 per MTok) - Cleo's grounded Q&A is a light
 # task, so this keeps per-question cost to fractions of a cent. Override with
 # CURA_CLEO_MODEL if you ever want a smarter model.
@@ -433,7 +433,7 @@ def _load_dotenv() -> None:
     """Load KEY=value lines from a repo-root .env (gitignored) into the
     environment, so the API key can be set once and forgotten. Real env vars
     always win over the file."""
-    env_file = DESIGN_DIR.parent / ".env"
+    env_file = WEB_DIR.parent / ".env"
     if not env_file.exists():
         return
     # utf-8-sig: tolerate the BOM that PowerShell's > / Set-Content may write
@@ -459,14 +459,14 @@ def _have_cleo() -> bool:
 
 def build_index_html(edition: dict | None, cleo_live: bool,
                      static_export: bool = False) -> str:
-    """Patch the prototype shell with live data + the Cleo backend shim.
+    """Patch the interface shell with live data + the Cleo backend shim.
 
     `edition=None` means the first build is still running: ship the page
     with the curating state and the poller instead of inlined data.
     `static_export` builds a serverless page (GitHub Pages): no /api
     scripts are injected, so nothing in the page can spend API tokens -
     the UI's own gates hide on-demand briefing and fall back to demo Cleo."""
-    html = (DESIGN_DIR / DESKTOP_HTML).read_text(encoding="utf-8")
+    html = (WEB_DIR / INDEX_HTML).read_text(encoding="utf-8")
     if edition is None:
         live_block = _LIVE_POLL
     else:
@@ -488,7 +488,7 @@ class CuraHandler(SimpleHTTPRequestHandler):
     cleo_live: bool = False
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, directory=str(DESIGN_DIR), **kwargs)
+        super().__init__(*args, directory=str(WEB_DIR), **kwargs)
 
     def _send(self, body: str, content_type: str, status: int = 200) -> None:
         data = body.encode("utf-8")
@@ -501,7 +501,7 @@ class CuraHandler(SimpleHTTPRequestHandler):
 
     def do_GET(self):  # noqa: N802 (stdlib naming)
         path = self.path.split("?", 1)[0]   # route ignoring query strings
-        if path in ("/", f"/{DESKTOP_HTML}"):
+        if path in ("/", f"/{INDEX_HTML}"):
             self._send(build_index_html(self.cache.peek(), self.cleo_live), "text/html")
         elif path == "/favicon.ico":
             self.send_response(204)
@@ -528,7 +528,7 @@ class CuraHandler(SimpleHTTPRequestHandler):
                 self.end_headers()
                 self.wfile.write(body)
         else:
-            super().do_GET()  # static design assets (jsx, html)
+            super().do_GET()  # static interface assets (jsx)
 
     def do_POST(self):  # noqa: N802
         if self.path == "/api/brief":
@@ -576,7 +576,7 @@ class CuraHandler(SimpleHTTPRequestHandler):
             return
         # Optional reader topics personalise the nightcap sign-off. The
         # editorial is cached per edition, so the first unlocker's topics
-        # win - fine for a single-reader research prototype.
+        # win - fine for a single-reader research system.
         reader_topics = []
         try:
             length = int(self.headers.get("Content-Length", 0) or 0)

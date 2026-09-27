@@ -1,4 +1,4 @@
-// PROVENANCE: ORIGINAL (bespoke to Cura) - React/JSX prototype component; the product spec (see design/HANDOFF.md). Third-party (CDN): React 18, ReactDOM, Babel standalone. See PROVENANCE.md.
+// PROVENANCE: ORIGINAL (bespoke to Cura) - React/JSX interface component; data shapes in web/README.md. Third-party (CDN): React 18, ReactDOM, Babel standalone. See PROVENANCE.md.
 // Cura - Saved view, Settings (personalization), and the Search command palette.
 
 const { useState: useStateScr, useEffect: useEffectScr, useRef: useRefScr } = React;

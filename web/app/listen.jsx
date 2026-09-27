@@ -1,4 +1,4 @@
-// PROVENANCE: ORIGINAL (bespoke to Cura) - React/JSX prototype component; the product spec (see design/HANDOFF.md). Third-party (CDN): React 18, ReactDOM, Babel standalone. Narration via the browser Web Speech API (speechSynthesis). See PROVENANCE.md.
+// PROVENANCE: ORIGINAL (bespoke to Cura) - React/JSX interface component; data shapes in web/README.md. Third-party (CDN): React 18, ReactDOM, Babel standalone. Narration via the browser Web Speech API (speechSynthesis). See PROVENANCE.md.
 // Cura - Listen view (audio briefings) - LIVE
 // Real narration via the Web Speech API (SpeechSynthesis), a waveform that
 // animates with playback, and a transcript that highlights the spoken line
@@ -200,7 +200,7 @@ function ListenView({ openCleo }) {
   const stories = window.CURA_STORIES || [];
 
   // Live edition: the episode card reflects today's actual briefing;
-  // prototype keeps the canned episode.
+  // offline demo keeps the canned episode.
   const canned = window.CURA_EPISODES.find(e => e.id === 'e-brief') || window.CURA_EPISODES[0];
   let current = canned;
   if (live && stories.length) {
@@ -216,14 +216,8 @@ function ListenView({ openCleo }) {
     };
   }
 
-  const [layout, setLayout] = useStateL(
-    (window.__curaTweaks && window.__curaTweaks.listenLayout) || 'immersive'
-  );
-  useEffectL(() => {
-    const onTw = (e) => { if (e.detail && e.detail.listenLayout) setLayout(e.detail.listenLayout); };
-    window.addEventListener('cura-tweak', onTw);
-    return () => window.removeEventListener('cura-tweak', onTw);
-  }, []);
+  // Listen layout: 'immersive' (waveform-led) or 'transcript' (text-led).
+  const layout = 'immersive';
 
   // Timeline + elapsed clock (decoupled from speech engine timing, but believable)
   const { starts, total } = buildTimeline(segments, nar.rate);
@@ -416,7 +410,7 @@ function ListenView({ openCleo }) {
   );
 
   /* queue block - live: this briefing's chapters (tap to jump the narration
-     to that story); prototype: the canned episode queue */
+     to that story); offline demo: the canned episode queue */
   const chapterMarks = segments
     .map((seg, i) => ({ chapter: seg.chapter, i }))
     .filter(seg => seg.chapter);

@@ -1,16 +1,9 @@
-// PROVENANCE: ORIGINAL (bespoke to Cura) - React/JSX prototype component; the product spec (see design/HANDOFF.md). Third-party (CDN): React 18, ReactDOM, Babel standalone. See PROVENANCE.md.
-// Cura - App root: state + router + tweaks panel
+// PROVENANCE: ORIGINAL (bespoke to Cura) - React/JSX interface component; data shapes in web/README.md. Third-party (CDN): React 18, ReactDOM, Babel standalone. See PROVENANCE.md.
+// Cura - App root: state + router + mount
 
 const { useState: useStateA, useEffect: useEffectA } = React;
 
 if (window.CURA_LIVE) document.title = 'Cura — Today';
-
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "theme": "paper",
-  "density": "comfortable",
-  "accent": "#B8331E",
-  "listenLayout": "immersive"
-}/*EDITMODE-END*/;
 
 function CuraApp() {
   const [view, setView] = useStateA('read');
@@ -37,25 +30,6 @@ function CuraApp() {
       window.removeEventListener('cura-live-pending', onPending);
     };
   }, []);
-  const tweaksResult = window.useTweaks ? window.useTweaks(TWEAK_DEFAULTS) : [TWEAK_DEFAULTS, () => {}];
-  const tweaks = tweaksResult[0];
-  const setTweak = tweaksResult[1];
-
-  // Apply theme + accent to root
-  useEffectA(() => {
-    const root = document.querySelector('.app-root');
-    if (!root) return;
-    if (tweaks.theme === 'dark') root.classList.add('theme-dark');
-    else root.classList.remove('theme-dark');
-    root.style.setProperty('--accent', tweaks.accent || '#B8331E');
-  }, [tweaks.theme, tweaks.accent]);
-
-  // Broadcast tweak values so views (e.g. Listen layout) can react live.
-  useEffectA(() => {
-    window.__curaTweaks = tweaks;
-    window.dispatchEvent(new CustomEvent('cura-tweak', { detail: tweaks }));
-  }, [tweaks]);
-
   // Hash routing (so back/forward + deep links work)
   useEffectA(() => {
     const apply = () => {
@@ -147,99 +121,16 @@ function CuraApp() {
         }} />
       )}
 
-      {/* Tweaks */}
-      {window.TweaksPanel && (
-        <TweaksPanel title="Tweaks">
-          <TweakSection title="Theme">
-            <TweakRadio
-              label="Surface"
-              value={tweaks.theme}
-              options={[
-                { value: 'paper', label: 'Paper' },
-                { value: 'dark', label: 'Dark' },
-              ]}
-              onChange={v => setTweak('theme', v)}
-            />
-            <TweakColor
-              label="Accent"
-              value={tweaks.accent}
-              onChange={v => setTweak('accent', v)}
-            />
-          </TweakSection>
-          <TweakSection title="Listen view">
-            <TweakRadio
-              label="Layout"
-              value={tweaks.listenLayout}
-              options={[
-                { value: 'immersive', label: 'Immersive' },
-                { value: 'transcript', label: 'Transcript' },
-              ]}
-              onChange={v => setTweak('listenLayout', v)}
-            />
-          </TweakSection>
-          <TweakSection title="Demo">
-            <TweakButton onClick={() => window.dispatchEvent(new CustomEvent('cura-start-tour'))}>▶ Guided tour</TweakButton>
-          </TweakSection>
-          <TweakSection title="Navigate">
-            <TweakButton onClick={() => goView('read')}>Read view</TweakButton>
-            <TweakButton onClick={() => goView('listen')}>Listen view</TweakButton>
-            <TweakButton onClick={() => goView('experience')}>Experience view</TweakButton>
-            <TweakButton onClick={() => goView('verify')}>Verify (claim checker)</TweakButton>
-            <TweakButton onClick={() => goView('saved')}>Saved</TweakButton>
-            <TweakButton onClick={() => goView('settings')}>Settings</TweakButton>
-            <TweakButton onClick={() => setSearchOpen(true)}>Open search (⌘K)</TweakButton>
-            <TweakButton onClick={openCleo}>Open Cleo</TweakButton>
-          </TweakSection>
-        </TweaksPanel>
-      )}
     </div>
   );
 }
 
-// Mount: full-viewport app when served live (`cura serve` injects
-// CURA_LIVE); otherwise the design-prototype browser-frame mockup.
+// Mount: the app fills the viewport. `cura serve` (and the static export)
+// inline the live edition as CURA_LIVE before this module runs.
 function CuraStage() {
-  const [w, setW] = useStateA(window.innerWidth);
-  const [h, setH] = useStateA(window.innerHeight);
-  useEffectA(() => {
-    const onR = () => { setW(window.innerWidth); setH(window.innerHeight); };
-    window.addEventListener('resize', onR);
-    return () => window.removeEventListener('resize', onR);
-  }, []);
-
-  if (window.CURA_LIVE || window.CURA_PENDING) {
-    return (
-      <div style={{ width: '100vw', height: '100vh' }}>
-        <CuraApp />
-      </div>
-    );
-  }
-
-  // Fit a 1440x880 frame into the viewport with padding
-  const designW = 1440, designH = 880;
-  const scale = Math.min((w - 48) / designW, (h - 48) / designH, 1);
-
   return (
-    <div className="stage">
-      <div style={{
-        width: designW, height: designH,
-        transform: `scale(${scale})`,
-        transformOrigin: 'center center',
-      }}>
-        <ChromeWindow
-          tabs={[
-            { title: 'Cura — Today, Aug 27' },
-            { title: 'Reuters' },
-            { title: 'WSJ' },
-          ]}
-          activeIndex={0}
-          url="cura.app/today"
-          width={designW}
-          height={designH}
-        >
-          <CuraApp />
-        </ChromeWindow>
-      </div>
+    <div style={{ width: '100vw', height: '100vh' }}>
+      <CuraApp />
     </div>
   );
 }

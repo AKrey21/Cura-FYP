@@ -17,7 +17,7 @@ Each source file states its class in a one-line header comment.
 | Area | Files | Original | Adapted | Library |
 |---|---|---|---|---|
 | `cura/` pipeline | 44 | 37 | 3 | 4 |
-| `design/` interface | 14 | 14 | 0 | 0 |
+| `web/` interface | 12 | 12 | 0 | 0 |
 | `tests/` | 9 | 9 | 0 | 0 |
 
 The research contribution is the disagreement metric in
@@ -31,7 +31,7 @@ The research contribution is the disagreement metric in
 |---|---|---|
 | `__init__.py` | original | package docstring, version |
 | `__main__.py` | original | entry point |
-| `contracts.py` | original | dataclasses; `to_ui_dict()` maps to the UI contracts in `design/HANDOFF.md` |
+| `contracts.py` | original | dataclasses; `to_ui_dict()` maps to the UI data shapes in `web/README.md` |
 | `orchestrator.py` | original | stage sequencing, per-stage fallback to baselines, latency instrumentation, topic-diverse pool selection |
 | `cli.py` | original | commands (argparse) |
 | `progress.py` | original | weighted build-progress reporter for the terminal and `/api/status` |
@@ -109,7 +109,7 @@ The research contribution is the disagreement metric in
 | `datasets/fetch_cnn_dailymail.py` | original | fetch script for a third-party dataset |
 | `datasets/fetch_tweeteval_sentiment.py` | original | fetch script for a third-party dataset |
 
-## Interface (`design/`)
+## Interface (`web/`)
 
 The React interface that `cura serve` renders. There is no build step: React 18,
 ReactDOM and Babel standalone load from a CDN and transpile the `.jsx` in the
@@ -117,10 +117,9 @@ browser. Those packages and Google Fonts are the only third-party parts.
 
 | File(s) | Class | Notes |
 |---|---|---|
-| `Cura - Desktop.html` | original | page shell: CSS tokens, fonts, script order |
+| `index.html` | original | page shell: CSS tokens, fonts, script order |
 | `app/*.jsx` (11 files) | original | views and state; `data.jsx` holds sample data replaced live by `window.CURA_LIVE`; `listen.jsx` uses the Web Speech API; `cleo.jsx` and `read.jsx` call the Cleo endpoint with offline fallbacks; `tour.jsx` is the guided tour |
-| `components/*.jsx` (2 files) | original | browser frame, tweaks panel |
-| `HANDOFF.md` | original | data-contract specification |
+| `README.md` | original | the data shapes the interface expects from the pipeline |
 
 ## Tests and packaging
 

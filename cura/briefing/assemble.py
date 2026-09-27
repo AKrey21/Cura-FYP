@@ -5,7 +5,7 @@
 """Assemble analysed story clusters into a ~5-minute briefing.
 
 Produces both UI contracts at once: the Story feed and the sentence-level
-CURA_BRIEFING transcript (design/HANDOFF.md). The word budget keeps the
+CURA_BRIEFING transcript (web/README.md). The word budget keeps the
 narrated briefing near the 5-minute target at typical TTS speaking rate.
 """
 

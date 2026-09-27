@@ -1,4 +1,4 @@
-// PROVENANCE: ORIGINAL (bespoke to Cura) - React/JSX prototype component; the product spec (see design/HANDOFF.md). Third-party (CDN): React 18, ReactDOM, Babel standalone. Live answers via window.claude (LLM) with a scripted offline fallback. See PROVENANCE.md.
+// PROVENANCE: ORIGINAL (bespoke to Cura) - React/JSX interface component; data shapes in web/README.md. Third-party (CDN): React 18, ReactDOM, Babel standalone. Live answers via window.claude (LLM) with a scripted offline fallback. See PROVENANCE.md.
 // Cura - Cleo conversational chat (slide-over panel) - LIVE
 // Cleo answers for real via window.claude.complete, grounded in today's source
 // set. If the API isn't available (offline file, rate limit, error), she falls
@@ -12,7 +12,7 @@ function buildCleoKB() {
     const tldr = s.tldr ? ' Key points: ' + s.tldr.join(' ') : '';
     return `• [${s.section}] ${s.headline}. ${s.dek}${tldr} (${s.sources} sources, confidence ${s.confidence}/5: ${s.confidenceLabel}).`;
   }).join('\n');
-  // The canned Fed source-comparison belongs to the prototype data only -
+  // The canned Fed source-comparison belongs to the canned sample data only -
   // grounding live Cleo in it would have her cite stories not in the edition.
   const compare = window.CURA_LIVE ? '' : (window.COMPARE_SOURCES || []).map(c =>
     `• ${c.name} (${c.lean}) — "${c.headline}". ${c.framing} Quote: ${c.quote}`
@@ -31,7 +31,7 @@ const CLEO_PERSONA =
   `3. Be concise: 2–4 short sentences, or a few tight points. This is a quick briefing, not an essay.\n` +
   `4. Never invent numbers, names, or quotes that aren't in the sources.`;
 
-/* keyword fallback so the prototype works offline / when rate-limited */
+/* keyword fallback so the interface works offline / when rate-limited */
 function cleoFallback(q) {
   const t = q.toLowerCase();
   if (/fed|powell|rate|interest|jackson/.test(t)) {
@@ -63,7 +63,7 @@ function CleoPanel({ open, onClose }) {
   const meta = window.editionMeta ? window.editionMeta() : { count: 9, minutes: 15 };
   const [messages, setMessages] = useStateC([
     { role: 'cleo', text: `Good morning. There are ${meta.count} stories in today’s edition — about ${meta.minutes} minutes. Want me to brief you, or is there something you’re tracking?` },
-    // The scripted Fed walkthrough is prototype-only demo content
+    // The scripted Fed walkthrough is offline-demo-only content
     ...(window.CURA_LIVE ? [] : [{
       role: 'cleo',
       text: 'Three things matter most about the Fed today, in order:',

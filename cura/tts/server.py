@@ -12,7 +12,6 @@ the transcript-sync model in the UI is unchanged whichever engine narrates.
 
 from __future__ import annotations
 
-from cura.contracts import Briefing
 
 # Coqui's character vocabulary is ASCII-ish: typographic punctuation and
 # accented letters get silently discarded (fusing or mangling the words
@@ -47,12 +46,6 @@ class CoquiTTS:
                 'CoquiTTS needs the optional extra: pip install -e ".[tts]"') from exc
         self.model_name = model_name
         self._tts = TTS(model_name)
-
-    def synthesize(self, briefing: Briefing, out_path: str) -> str:
-        """Narrate the briefing transcript into a single WAV at `out_path`."""
-        text = " ".join(seg.text for seg in briefing.segments)
-        self._tts.tts_to_file(text=text.translate(_CHAR_MAP), file_path=out_path)
-        return out_path
 
     def synthesize_text(self, text: str, out_path: str) -> str:
         """One sentence to one WAV (listening test + Listen narration)."""

@@ -1,12 +1,12 @@
 # PROVENANCE: ORIGINAL - data contracts (Article/StanceResult/Summary/
 # Triangulation/StoryCluster/Story/Briefing) and the to_ui_dict() mappings to
-# design/HANDOFF.md. Bespoke to Cura; stdlib (dataclasses) only. See PROVENANCE.md.
+# web/README.md. Bespoke to Cura; stdlib (dataclasses) only. See PROVENANCE.md.
 """Shared datatypes for the pipeline.
 
 The `Story` and `BriefingSegment` shapes mirror the UI data contracts in
-design/HANDOFF.md ("Data Contracts"); `Story.to_ui_dict()` and
+web/README.md ("Data Contracts"); `Story.to_ui_dict()` and
 `BriefingSegment.to_ui_dict()` must stay byte-compatible with what the
-prototype's app/data.jsx expects.
+interface's app/data.jsx expects.
 """
 
 from __future__ import annotations
@@ -111,7 +111,7 @@ def confidence_from_sources(n_sources: int) -> tuple[int, str]:
 
 @dataclass
 class Story:
-    """UI-facing story shape (design/HANDOFF.md 'Story' contract)."""
+    """UI-facing story shape (web/README.md 'Story' contract)."""
 
     id: str
     section: str

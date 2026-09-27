@@ -5,7 +5,7 @@
 
 Generates a standalone HTML page that narrates the CURA_BRIEFING segments
 client-side with `speechSynthesis` - the baseline named in the proposal, and
-the same narration model as the design prototype's Listen view (sentence-level
+the same narration model as the web interface's Listen view (sentence-level
 segments, synced transcript, play/pause/seek, speed control).
 
 A server TTS (cura/tts/server.py) must beat this on a MOS-style listening test

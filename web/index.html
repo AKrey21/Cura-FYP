@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- PROVENANCE: ORIGINAL (bespoke to Cura) — prototype shell: CSS design tokens, fonts, script load order. Third-party (CDN): React 18, ReactDOM, Babel standalone, Google Fonts (Fraunces/Inter/JetBrains Mono). See PROVENANCE.md. -->
+<!-- PROVENANCE: ORIGINAL (bespoke to Cura) — page shell of the web interface: CSS design tokens, fonts, script load order. Third-party (CDN): React 18, ReactDOM, Babel standalone, Google Fonts (Fraunces/Inter/JetBrains Mono). See PROVENANCE.md. -->
 <html lang="en"><head>
 <meta charset="UTF-8">
 <title>Cura — Desktop</title>
@@ -19,7 +19,6 @@
     --ink-muted:#6B7280;
     --rule:#1A2438;
     --paper-rule:rgba(14,26,43,0.18);
-    --paper-rule-soft:rgba(14,26,43,0.10);
     --accent:#B8331E;
     --accent-soft:#D9A074;
     --green:#1F5E3F;
@@ -35,16 +34,7 @@
     text-rendering:optimizeLegibility;
   }
   .serif{font-family:'Fraunces',Georgia,serif;}
-  .sans{font-family:'Inter',system-ui,sans-serif;}
   .mono{font-family:'JetBrains Mono','SFMono-Regular',Menlo,monospace;}
-
-  /* App layout */
-  .stage{
-    width:100vw;height:100vh;
-    display:flex;align-items:center;justify-content:center;
-    padding:24px;
-    overflow:hidden;
-  }
 
   /* App canvas: paper background, scrollable */
   .app-root{
@@ -312,8 +302,6 @@
   }
 
   /* Newspaper-specific (Experience view) */
-  .nps-rule-thick{border-top:3px double var(--ink);}
-  .nps-rule{border-top:1px solid var(--ink);}
   .drop-cap::first-letter{
     font-family:'Fraunces',serif;
     font-size:72px;
@@ -340,20 +328,6 @@
     border:1px solid var(--paper-rule);
     padding:24px;
     display:flex;flex-direction:column;
-  }
-
-  /* Dark mode override */
-  body.theme-dark{--bg-app:#0a0a0a;}
-  .app-root.theme-dark{
-    --paper:#13141a;
-    --paper-2:#1c1d24;
-    --paper-3:#262832;
-    --ink:#F0EBE0;
-    --ink-soft:#C9C3B5;
-    --ink-muted:#7B7568;
-    --rule:#3A3D48;
-    --paper-rule:rgba(240,235,224,0.10);
-    --paper-rule-soft:rgba(240,235,224,0.05);
   }
 
   /* Editorial scrollbars — thin, ink-tinted, no Windows chrome */
@@ -409,22 +383,16 @@
     }
   }
 
-  body.hide-tweaks .__tweaks_panel__{display:none !important;}
 </style>
 </head>
 <body>
 
 <div id="root"></div>
-<div id="tweaks-root"></div>
 
 <!-- React + Babel -->
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-
-<!-- Components -->
-<script type="text/babel" src="components/chrome.jsx"></script>
-<script type="text/babel" src="components/tweaks-panel.jsx"></script>
 
 <!-- Cura app modules -->
 <script type="text/babel" src="app/data.jsx"></script>

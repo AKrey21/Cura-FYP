@@ -1,6 +1,6 @@
 # PROVENANCE: ORIGINAL - URL-canonicalisation + normalised-title dedup (a common
 # technique, implemented from scratch). Stdlib only. See PROVENANCE.md.
-"""Deduplication by canonical URL and normalised title (design/HANDOFF.md #1)."""
+"""Deduplication by canonical URL and normalised title."""
 
 from __future__ import annotations
 

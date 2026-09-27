@@ -1,4 +1,4 @@
-// PROVENANCE: ORIGINAL (bespoke to Cura) - React/JSX prototype component; the product spec (see design/HANDOFF.md). Third-party (CDN): React 18, ReactDOM, Babel standalone. See PROVENANCE.md.
+// PROVENANCE: ORIGINAL (bespoke to Cura) - React/JSX interface component; data shapes in web/README.md. Third-party (CDN): React 18, ReactDOM, Babel standalone. See PROVENANCE.md.
 // Cura - Experience view: "The Cura Daily" as a single broadsheet sheet.
 // Not a book: one tall page of dense, column-flowed newsprint on a desk -
 // the way a real paper reads. Stories pour into CSS columns that pack

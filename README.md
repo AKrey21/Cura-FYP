@@ -9,8 +9,8 @@ The research contribution is the **orchestration** plus **cross-source stance
 triangulation**: for stories covered by two or more sources, the pipeline
 quantifies disagreement (spread of a signed stance score + label-distribution
 entropy) and flags contested coverage. Every model choice is justified against
-a baseline on a benchmark - see [`design/HANDOFF.md`](design/HANDOFF.md) for the UI
-prototype and the data contracts the pipeline targets.
+a baseline on a benchmark - see [`web/README.md`](web/README.md) for the data
+shapes the pipeline hands to the interface.
 
 ## Pipeline
 
@@ -56,7 +56,7 @@ narration (browser Web Speech API) all cost nothing and need no keys. The
 only paid piece is **Cleo chat / Verify claim-checking**, which needs an
 Anthropic API key (Console billing, pay-per-token; a Claude Pro/Max plan does
 not include API keys). Without a key those two features run in the
-prototype's scripted demo mode - everything else is fully live.
+interface's scripted demo mode - everything else is fully live.
 
 ### CLI output formats (no server)
 
@@ -85,7 +85,7 @@ headline samples, triangulation human-judgement protocol):
 
 | Path | What |
 |---|---|
-| `design/` | The web interface (React, served by `cura serve`) and its binding data contracts |
+| `web/` | The web interface (React, served by `cura serve`) and the data shapes it expects |
 | `cura/ingest/` | RSS + Reddit ingestion, URL/title dedupe, TF-IDF event clustering |
 | `cura/summarize/` | TextRank baseline; optional abstractive (`pip install -e ".[abstractive]"`) |
 | `cura/stance/` | VADER baseline; optional transformer (`".[stance-transformer]"`) |
@@ -93,7 +93,7 @@ headline samples, triangulation human-judgement protocol):
 | `cura/briefing/` | ~5-minute assembly + text and newspaper renderers (emits `Story` / `CURA_BRIEFING` shapes) |
 | `cura/tts/` | Web Speech audio-player baseline; optional Coqui server TTS (`".[tts]"`) |
 | `cura/orchestrator.py` | Stage sequencing, graceful fallback, latency report |
-| `cura/server.py` | `cura serve`: serves the design prototype with live pipeline data + Cleo API proxy |
+| `cura/server.py` | `cura serve`: serves the web interface with live pipeline data + Cleo API proxy |
 | `cura/eval/` | Stance / summary metric harnesses + dataset guide |
 | `examples/` | Offline article fixture (multi-source, one deliberately contested story) |
 | `tests/` | pytest suite (all offline) |
@@ -104,7 +104,7 @@ headline samples, triangulation human-judgement protocol):
    briefing, with stance + summarisation eval harnesses and per-stage latency.
 2. ✅ Audio (Web Speech player baseline, optional Coqui server TTS) and the
    one-page newspaper renderer (`--format newspaper|audio`).
-3. ✅ Web delivery - `cura serve` runs the pipeline and serves the design
-   prototype with live data; Cleo/Verify proxy to the Anthropic API.
+3. ✅ Web delivery - `cura serve` runs the pipeline and serves the web
+   interface with live data; Cleo/Verify proxy to the Anthropic API.
    ⬜ Remaining: scheduling (cron the daily edition), mobile/iOS parity,
    user accounts, and the evaluation runs on real benchmarks for the report.

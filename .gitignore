@@ -45,9 +45,5 @@ report/Cura-Preliminary-Report.pdf
 # The report (sources, build tooling, PDF) is submitted separately, not published here
 report/
 PROJECT-BRIEF.md
-design/*.pptx
-# Unused phone-frame mock-up and designer notes: kept on disk, not published
-design/Cura - iOS.html
-design/ios/
-design/components/ios.jsx
-design/README.md
+# Design-phase leftovers (proposal slides, unused phone mock-up, designer notes): kept on disk, not published
+web/_archive/

@@ -15,16 +15,15 @@ baked editorial arrives pre-unlocked with the Wire/Edited toggle intact.
 
 from __future__ import annotations
 
-import json
 import shutil
 from pathlib import Path
 
-from cura.server import (DESIGN_DIR, EditionCache, _cleo_complete,
+from cura.server import (WEB_DIR, EditionCache, _cleo_complete,
                          _editorial_prompt, _have_cleo, _load_dotenv,
                          _parse_editorial, build_index_html)
 
-# What the static site needs from design/ (prototype shells + frames stay home)
-_ASSET_DIRS = ("app", "components")
+# What the static site needs from web/ besides index.html
+_ASSET_DIRS = ("app",)
 
 
 def export_site(out_dir: str, pipeline=None, tts=None,
@@ -70,7 +69,7 @@ def export_site(out_dir: str, pipeline=None, tts=None,
         dest = out / sub
         if dest.exists():
             shutil.rmtree(dest)
-        shutil.copytree(DESIGN_DIR / sub, dest)
+        shutil.copytree(WEB_DIR / sub, dest)
     (out / "index.html").write_text(
         build_index_html(edition, cleo_live=False, static_export=True),
         encoding="utf-8")

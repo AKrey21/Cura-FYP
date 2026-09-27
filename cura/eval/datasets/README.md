@@ -60,3 +60,11 @@ Usefulness / trust / format preference - protocol and questionnaire in
 by the researcher). Aggregate with `python -m cura eval-user-study` -
 Likert medians/IQR per item, format rankings, contested-flag agreement,
 open answers verbatim.
+
+A retrospective needs survey (September 2026; the same eight participants,
+matched by code; gathered after the design) sits beside it: questionnaire
+and researcher notes in `user-study/needs-survey-2026-09.md`, responses in
+`user-study/needs-survey-responses.csv`. Tally with
+`python -m cura eval-needs-survey` - counts per option ("six of eight",
+never percentages at n = 8), "other" text and open answers verbatim.
+Results and reading: `cura/eval/results/needs-survey-2026-09.md`.

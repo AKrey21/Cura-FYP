@@ -373,6 +373,13 @@ def _cmd_eval_user_study(args) -> int:
     return 0
 
 
+def _cmd_eval_needs_survey(args) -> int:
+    from cura.eval import user_study as user_study_eval
+
+    print(user_study_eval.needs_survey(args.data).table())
+    return 0
+
+
 def _cmd_export_triangulation(args) -> int:
     from cura.eval import triangulation as tri_eval
 
@@ -561,6 +568,14 @@ def main(argv: list[str] | None = None) -> int:
                        default="cura/eval/datasets/user-study/responses.csv",
                        help="transcribed responses CSV (one row per participant)")
     p_eus.set_defaults(func=_cmd_eval_user_study)
+
+    p_ens = sub.add_parser("eval-needs-survey",
+                           help="tally the retrospective needs survey: "
+                                "counts per option, 'other' text, open answers")
+    p_ens.add_argument("--data",
+                       default="cura/eval/datasets/user-study/needs-survey-responses.csv",
+                       help="survey responses CSV (one row per participant)")
+    p_ens.set_defaults(func=_cmd_eval_needs_survey)
 
     p_xt = sub.add_parser("export-triangulation",
                           help="export multi-source stories as a blind "

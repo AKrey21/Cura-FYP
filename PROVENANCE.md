@@ -105,7 +105,7 @@ The research contribution is the disagreement metric in
 | `clustering.py` | original | hard-pair sampling, pair precision/recall/F1; TF-IDF from scikit-learn |
 | `latency.py` | original | per-stage and end-to-end latency, percentiles by linear interpolation |
 | `tts.py` | original | blind MOS listening-test page and confidence-interval aggregation (ITU-T P.800 method) |
-| `user_study.py` | original | Likert medians and IQR, format rankings, contested-flag agreement, non-response and tie handling |
+| `user_study.py` | original | Likert medians and IQR, format rankings, contested-flag agreement, non-response and tie handling; needs-survey option counts |
 | `datasets/fetch_cnn_dailymail.py` | original | fetch script for a third-party dataset |
 | `datasets/fetch_tweeteval_sentiment.py` | original | fetch script for a third-party dataset |
 

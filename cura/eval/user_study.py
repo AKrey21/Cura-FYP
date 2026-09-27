@@ -154,3 +154,135 @@ def evaluate(path: str) -> UserStudyResult:
                             if r[key].strip()] for key in ("O1", "O2")},
         notes=notes,
     )
+
+
+# ------------------------------------------------------------ needs survey --
+# Retrospective needs survey, September 2026 (``datasets/user-study/
+# needs-survey-2026-09.md``): twelve questions to the same eight participants,
+# matched by code, gathered AFTER the design to check the literature-derived
+# requirements against the intended audience. n = 8, so every statistic is a
+# count ("six of eight"), never a percentage. Multi-select cells hold
+# semicolon-separated options; "other" text, the two open questions and the
+# participants' asides (``notes``) stay verbatim, and the thematic coding of
+# the open answers remains a human judgement.
+
+SURVEY_OPTIONS = {
+    "q1_frequency": ("several times a day", "about once a day",
+                     "a few times a week", "less often"),
+    "q2_sources": ("news apps or websites", "social media", "messaging groups",
+                   "podcasts or radio", "TV", "email newsletters", "other"),
+    "q3_avoid": ("never", "sometimes", "often"),
+    "q4_reasons": ("too much of it", "too negative",
+                   "cannot tell what to trust", "no time", "other"),
+    "q5_length": ("under two minutes", "about five minutes",
+                  "about ten minutes", "fifteen minutes or more"),
+    "q6_format": ("text summary", "audio", "single page"),
+    "q7_time": ("morning", "lunch", "evening", "no set time"),
+    "q8_noticed": ("often", "sometimes", "rarely", "never"),
+    "q9_response": ("read more than one outlet", "go with the outlet I trust",
+                    "ignore it", "not sure which to believe"),
+    "q10_trust": ("which outlets", "how many outlets", "open the original",
+                  "where outlets disagree", "single-outlet warning",
+                  "person or AI", "other"),
+}
+SURVEY_MULTI = ("q2_sources", "q4_reasons", "q10_trust")   # tick all that apply
+SURVEY_OPEN = {"q11_annoying": "most annoying thing about keeping up",
+               "q12_briefing": "how a daily briefing should work"}
+SURVEY_LABELS = {
+    "q1_frequency": "Q1 how often they check the news",
+    "q2_sources": "Q2 where they get it (tick all)",
+    "q3_avoid": "Q3 deliberately avoid the news",
+    "q4_reasons": "Q4 why (tick all; those who avoid)",
+    "q5_length": "Q5 how long a daily catch-up should take",
+    "q6_format": "Q6 the one format they would keep",
+    "q7_time": "Q7 when in the day",
+    "q8_noticed": "Q8 noticed outlets telling a story differently",
+    "q9_response": "Q9 what they do then",
+    "q10_trust": "Q10 what would make them trust a summary (tick all)",
+}
+
+
+@dataclass
+class NeedsSurveyResult:
+    n: int
+    counts: dict        # question -> {option: count}, questionnaire order
+    answered: dict      # question -> participants who answered it
+    who: dict           # question -> {option: [participant codes]}
+    other: dict         # question -> [(participant, "other" text)]
+    open_answers: dict  # q11/q12 -> [(participant, text)]
+    notes: list         # blanks kept as recorded
+
+    def table(self) -> str:
+        lines = [f"needs survey — {self.n} participant(s)"]
+        for q, label in SURVEY_LABELS.items():
+            lines += ["", f"{label}  ({self.answered[q]} of {self.n} answered)"]
+            for opt, c in self.counts[q].items():
+                codes = ", ".join(self.who[q][opt])
+                lines.append(f"  {opt:<28} {c:>2} of {self.n}   {codes}")
+            for p, text in self.other.get(q, []):
+                lines.append(f"    other, {p}: {text}")
+        if self.notes:
+            lines.append("\ndata notes (kept as recorded):")
+            lines += [f"  {note}" for note in self.notes]
+        for key, question in SURVEY_OPEN.items():
+            lines.append(f"\n{key[:3].upper()} — {question}:")
+            lines += [f"  {p}: {text}" for p, text in self.open_answers[key]]
+        return "\n".join(lines)
+
+
+def _ticked(question: str, raw: str) -> list[str]:
+    return [t.strip() for t in raw.split(";")] if question in SURVEY_MULTI else [raw]
+
+
+def load_survey(path: str) -> tuple[list[dict], list[str]]:
+    """One row per participant. An option outside the questionnaire raises
+    (a transcription slip); a blank answer is kept and reported as a note."""
+    with open(path, newline="", encoding="utf-8") as fh:
+        rows = [r for r in csv.DictReader(fh) if r.get("participant", "").strip()]
+    if not rows:
+        raise ValueError(f"no responses in {path}")
+    notes = []
+    for row in rows:
+        p = row["participant"]
+        for q, options in SURVEY_OPTIONS.items():
+            raw = row[q].strip()
+            if not raw:
+                if q == "q4_reasons" and row["q3_avoid"].strip() == "never":
+                    notes.append(f"{p}: Q4 not applicable (never avoids the news)")
+                else:
+                    notes.append(f"{p}: {q} left blank")
+                continue
+            for t in _ticked(q, raw):
+                if t not in options:
+                    raise ValueError(f"{p}: {q}={t!r} is not a questionnaire option")
+            other_col = q.split("_")[0] + "_other"
+            if "other" in _ticked(q, raw) and not row.get(other_col, "").strip():
+                notes.append(f"{p}: {q} ticked 'other' with no text")
+    return rows, notes
+
+
+def needs_survey(path: str) -> NeedsSurveyResult:
+    rows, notes = load_survey(path)
+    counts, answered, who, other = {}, {}, {}, {}
+    for q, options in SURVEY_OPTIONS.items():
+        counts[q] = {opt: 0 for opt in options}
+        who[q] = {opt: [] for opt in options}
+        answered[q] = 0
+        other_col = q.split("_")[0] + "_other"
+        for row in rows:
+            raw = row[q].strip()
+            if not raw:
+                continue
+            answered[q] += 1
+            for t in _ticked(q, raw):
+                counts[q][t] += 1
+                who[q][t].append(row["participant"])
+            if row.get(other_col, "").strip():
+                other.setdefault(q, []).append((row["participant"],
+                                                row[other_col].strip()))
+    return NeedsSurveyResult(
+        n=len(rows), counts=counts, answered=answered, who=who, other=other,
+        open_answers={key: [(r["participant"], r[key].strip()) for r in rows
+                            if r[key].strip()] for key in SURVEY_OPEN},
+        notes=notes,
+    )

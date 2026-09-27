@@ -306,3 +306,46 @@ def test_summary_eval_end_to_end(tmp_path):
     assert result.rouge1 > 0.2
     assert result.faithfulness == 1.0
     assert result.n == 1
+
+
+def test_needs_survey_eval(tmp_path):
+    from cura.eval import user_study as user_study_eval
+
+    header = ["participant", "date", "q1_frequency", "q2_sources", "q2_other",
+              "q3_avoid", "q4_reasons", "q4_other", "q5_length", "q6_format",
+              "q7_time", "q8_noticed", "q9_response", "q10_trust", "q10_other",
+              "q11_annoying", "q12_briefing", "notes"]
+    survey = tmp_path / "needs-survey.csv"
+    with open(survey, "w", newline="", encoding="utf-8") as fh:
+        writer = csv.writer(fh)
+        writer.writerow(header)
+        writer.writerow(["P01", "2026-09-27", "several times a day",
+                         "social media; messaging groups", "", "sometimes",
+                         "too negative; other", "nothing to do with me",
+                         "under two minutes", "text summary", "no set time",
+                         "sometimes", "ignore it",
+                         "open the original; person or AI", "",
+                         "clickbait", "keep it short", ""])
+        writer.writerow(["P02", "2026-09-27", "about once a day",
+                         "messaging groups", "", "never", "", "",
+                         "about five minutes", "audio", "morning", "often",
+                         "read more than one outlet", "which outlets", "",
+                         "", "read it out", ""])
+    result = user_study_eval.needs_survey(str(survey))
+    assert result.n == 2
+    assert result.counts["q2_sources"]["messaging groups"] == 2
+    assert result.counts["q2_sources"]["social media"] == 1
+    assert result.who["q10_trust"]["person or AI"] == ["P01"]
+    assert result.answered["q4_reasons"] == 1            # P02 never avoids
+    assert result.other["q4_reasons"] == [("P01", "nothing to do with me")]
+    assert result.open_answers["q11_annoying"] == [("P01", "clickbait")]
+    assert any("Q4 not applicable" in n for n in result.notes)
+    assert "messaging groups" in result.table()
+
+    with open(survey, "w", newline="", encoding="utf-8") as fh:
+        writer = csv.writer(fh)
+        writer.writerow(header)
+        writer.writerow(["P01", "2026-09-27", "hourly", "", "", "never", "",
+                         "", "", "", "", "", "", "", "", "", "", ""])
+    with pytest.raises(ValueError, match="not a questionnaire option"):
+        user_study_eval.needs_survey(str(survey))

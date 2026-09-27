@@ -7,8 +7,7 @@ read, listen to, or skim as a one-page paper.
 It is my final-year project for the University of London CM3070 module, built
 under the "Orchestrating AI Models" template. The pipeline chains three kinds
 of model, each with a simple baseline and a heavier alternative that only
-replaces the baseline if it wins on a benchmark. The part I would call my own
-is the triangulation step: for any story covered by two or more outlets, Cura
+replaces the baseline if it wins on a benchmark. My own contribution is the triangulation step: for any story covered by two or more outlets, Cura
 measures how far their stances diverge and flags the story as contested, and
 the report tests how well that flag matches human judgement.
 
@@ -66,7 +65,7 @@ Installing an optional extra is all it takes for `serve` to use it:
 | `tts` | Coqui neural narration rendered on the server |
 | `cleo` | Cleo, the in-app assistant, and the Verify claim checker |
 
-Everything except Cleo and Verify runs with no keys and no cost. Those two
+Everything except Cleo and the claim checker runs with no keys and no cost. Those two
 call the Anthropic API and need `ANTHROPIC_API_KEY` set; without it they fall
 back to a scripted demo and the rest of the app is unaffected.
 
@@ -84,18 +83,17 @@ key in the page, for hosting anywhere.
 
 ## Evaluation
 
-Every model choice in the serving stack rests on a measured comparison, and
-the data behind each result is in the repo so the numbers can be recomputed.
+Each result below comes from a script in the repo, with the data committed so the numbers can be recomputed.
 
 | Stage | Result |
 |---|---|
 | Stance | RoBERTa macro-F1 0.712 vs VADER 0.528 on TweetEval; 0.697 vs 0.493 on 200 hand-labelled headlines. Adopted. |
 | Summarisation | BART beats TextRank on ROUGE but scores 0.895 on the faithfulness check where extractive output scores 1.000. Rejected as default. |
 | Clustering | TF-IDF pair F1 0.950, a statistical tie with sentence embeddings, so the lighter one stays. |
-| Triangulation | The contested flag agrees with my own labels at κ 0.533 at its best threshold. Under a tightened protocol two raters agree at κ 0.724 while the flag reaches κ 0.085, so stance dispersion captures part of what readers call contested, not all of it. |
+| Triangulation | The contested flag agrees with my own labels at κ 0.533 at its best threshold. Under a tightened protocol two raters agree at κ 0.724 while the flag reaches κ 0.085, so stance dispersion captures only part of what readers call contested. |
 | Narration | Coqui scores 0.73 MOS above the browser's Web Speech voice in a blind listening test. Adopted. |
 | Users | Eight participants; usefulness median 4 of 5; audio the preferred daily format. |
-| System | About 96% of end-to-end time is network fetching; the pipeline itself is fast. |
+| System | About 96% of end-to-end time is network fetching. |
 
 The commands:
 
@@ -129,7 +127,7 @@ committed.
 | `cura/server.py` | the web server and the Cleo proxy |
 | `cura/eval/` | evaluation harnesses, datasets, results |
 | `web/` | the React interface; its README lists the data shapes the pipeline must produce |
-| `examples/` | an offline fixture with one deliberately contested story |
+| `examples/` | an offline fixture with one contested story |
 | `tests/` | pytest suite, all offline |
 
 `PROVENANCE.md` classifies every source file as original, adapted, or a thin

@@ -66,5 +66,5 @@ voice, not over the best available Web Speech stack.
 **Adoption (2026-08-02): confirmed.** The 2026-06-11 provisional adoption
 of `cura serve --neural-tts` is now evidence-backed: +0.73 MOS and a 4:1
 preference ratio justify the ~1.1 s/sentence server CPU and ~113 MB model
-cost. The flag still defaults off; without it (or if synthesis fails)
-Listen falls back to Web Speech.
+cost. `cura serve` now uses Coqui whenever the `tts` extra is installed
+(`--light` forces the baseline); if synthesis fails, Listen falls back to Web Speech.

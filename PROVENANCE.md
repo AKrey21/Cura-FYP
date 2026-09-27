@@ -1,8 +1,8 @@
 # Code provenance
 
-What in this repository was written for Cura, what was implemented from a
-published method, and what is a thin wrapper around someone else's package.
-Three classes:
+This file records what I wrote for Cura, what I implemented from a published
+method, and what is a thin wrapper around someone else's package. Every file in
+the repository falls into one of three classes:
 
 - original: written for this project.
 - adapted: a published algorithm implemented here from its description. The
@@ -10,14 +10,15 @@ Three classes:
 - library: a wrapper whose substance is a third-party package. Only the glue
   is mine.
 
-Each source file states its class in a one-line header comment.
+Each source file under `cura/` and `web/` states its class in a one-line header
+comment; the test files have no header.
 
 ## Summary
 
 | Area | Files | Original | Adapted | Library |
 |---|---|---|---|---|
 | `cura/` pipeline | 44 | 37 | 3 | 4 |
-| `web/` interface | 12 | 12 | 0 | 0 |
+| `web/` interface | 13 | 13 | 0 | 0 |
 | `tests/` | 9 | 9 | 0 | 0 |
 
 The research contribution is the disagreement metric in
@@ -111,6 +112,9 @@ The research contribution is the disagreement metric in
 | `datasets/2026-08-02-stance-headlines-200*.csv` | original | blind headline pack and its author-labelled copy (deployment-domain stance sample) |
 | `datasets/2026-06-11-triangulation-annotate*`, `datasets/2026-08-03-*-claude-repeat.csv` | original | triangulation annotation packs: author labels, declared LLM-judge labels, and the metric's outputs kept apart |
 | `datasets/2026-06-11-clustering-pairs*` | original | 60 labelled cross-outlet pairs, the judge's labels, and the corpus snapshot they came from (feed titles and descriptions: third-party text, research use) |
+| `datasets/label-headlines.html` | original | browser page used to label the headline pack blind |
+| `datasets/tts-ratings/2026-08-02-all-raters.csv` | original | listening-test ratings, anonymised |
+| `datasets/user-study/*` | original | information sheet and consent form, questionnaire, anonymised responses, the September needs survey and its responses |
 
 ## Interface (`web/`)
 

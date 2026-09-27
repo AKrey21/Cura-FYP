@@ -31,9 +31,9 @@ from cura.contracts import StanceResult, Triangulation
 # 2026-06-11-triangulation-llm-judge.md): threshold sweep over 30 stories
 # labelled by a declared LLM judge, on RoBERTa stance metrics. Spread 0.50
 # is the sweep optimum (kappa 0.247 vs 0.186 at the old 0.35); entropy 0.80
-# carries real signal (0.85 drops kappa below zero). Provisional pending the
-# human annotation pass - agreement is weak everywhere, which is itself the
-# study's finding: sentiment dispersion only partly captures perceived
+# carries real signal (0.85 drops kappa below zero). Confirmed by the round-3
+# human pass (August 2026) - agreement stays weak everywhere, which is itself
+# the study's finding: sentiment dispersion only partly captures perceived
 # framing disagreement.
 SPREAD_THRESHOLD = 0.50
 ENTROPY_THRESHOLD = 0.80

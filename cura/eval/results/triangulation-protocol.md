@@ -1,8 +1,9 @@
 # Triangulation validation - annotation protocol
 
 **Goal.** The contested flag is the novel contribution's output: a story is
-flagged when stance **spread ≥ 0.35** or label **entropy ≥ 0.80** across ≥ 2
-sources (`cura/triangulate/metrics.py`). Those thresholds are hypotheses. This
+flagged when stance **spread** or label **entropy** crosses its threshold across ≥ 2
+sources (`cura/triangulate/metrics.py`; spread ≥ 0.35 / entropy ≥ 0.80 when this
+pack was exported, spread ≥ 0.50 / entropy ≥ 0.80 since round 2). Those thresholds are hypotheses. This
 study validates them against human judgement, as the evaluation plan requires.
 
 ## The annotation pack
@@ -21,8 +22,8 @@ python -m cura export-triangulation \
 - `…-annotate.model.json` - the model's spread/entropy/flag per story.
   **Do not open it while annotating** - the CSV is deliberately blind so the
   model's verdict can't anchor you.
-- Both files are gitignored (they contain article text); regenerate any day
-  with the command above.
+- Both files are tracked in `cura/eval/datasets/`; the command above exports a
+  fresh pack from the live store.
 
 At the default thresholds the model flags **18/30 (60%)** of this pack as
 contested - a high rate that itself suggests the thresholds may be

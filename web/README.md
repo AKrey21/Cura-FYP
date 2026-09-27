@@ -24,7 +24,7 @@ reference copy.
   id: 's-fed',                 // stable unique id
   section: 'Economy',          // one of the 9 topic categories
   headline: 'Fed signals first rate cut…',
-  dek: 'Powell's remarks moved markets…',
+  dek: 'Powell’s remarks moved markets…',
   tldr: ['…', '…', '…'],       // extractive cited summary (optional)
   sources: 14,                 // independent source count
   confidence: 4,               // 1–5, from source count
@@ -45,8 +45,7 @@ reference copy.
 The live edition payload (`window.CURA_LIVE`, from `cura serve`) additionally
 carries: `estMinutes`, `scannedArticles`, `sources` (tracked outlet names),
 `topics` (the topics this edition was built for - empty for the daily
-edition), `builtAt` (epoch seconds), `audio` (one WAV URL per briefing
-segment when serving `--neural-tts`),
+edition), `builtAt` (epoch seconds), `audio` (one WAV URL per briefing segment when Coqui narration is installed or `--neural-tts` is passed),
 `trends` (live `CURA_TRENDS` rows), `moreStories` (full Story objects for the
 analysed clusters beyond the spoken briefing, selected round-robin across
 topics so one heavy topic can't crowd the rest - they fill Read's section
@@ -64,7 +63,7 @@ compare: { storyId, headline, confidence, confidenceLabel,
 
 ### Briefing segment (`CURA_BRIEFING`)
 ```js
-{ chapter: 'The Fed — Powell's signal',  // optional: starts a new section
+{ chapter: 'The Fed — Powell’s signal',  // optional: starts a new section
   text: 'One spoken sentence.' }          // keep sentence-level for TTS reliability
 ```
 
@@ -86,8 +85,8 @@ compare: { storyId, headline, confidence, confidenceLabel,
 ## Views & behaviors
 
 - **Read** - sticky section bar (Front page + one tab per topic with stories, followed topics first; deep-linkable as `#read/<Topic>`). Front page: hero + cluster + briefly-noted + trends + per-followed-topic teasers. Section tabs: section lead + card grid from `stories` + `moreStories`. Confidence bars, "why am I seeing this", coverage spread → Verify. Bookmark toggles Saved. **Loading state**: curating skeleton on first visit (`ReadSkeleton`). **On-demand (live)**: masthead "New edition…" form calls `window.curaRequestBriefing(topics)` → `POST /api/brief` re-runs the whole pipeline; the skeleton shows the requested topics while polling, the masthead tags on-demand editions and offers "back to the daily edition". Settings has a "re-curate from these topics" button using the same call.
-- **Listen** - live narration; tap transcript line or scrub waveform to seek; speed 0.75–1.5×. Engine: server-rendered neural audio when the live payload carries `audio` (one WAV URL per `CURA_BRIEFING` segment, from `cura serve --neural-tts`), else Web Speech. **Unsupported state**: shows a notice, transcript still navigable.
-- **Experience** - "The Cura Daily" as a single broadsheet sheet on a lit desk: big masthead, lead story (drop-cap double-column text + halftone photo), a right rail (In this edition / most contested / trending), the fold, then the WHOLE edition (`allStories()`) flowing continuously as packed CSS-column newsprint under ruled section headers (classic newspaper order; column flow makes empty space impossible). Stories are NOT links - reading is the interaction. Photos are halftone and lead-only. The sheet ends with the publisher's inline ad box, **The Nightcap** (a three-column personal column typeset from local signals: followed-topic tally, saved-story clippings, tomorrow's watchlist, Cleo's signed note; no model call), and the colophon Index. The press gate blurs the sheet behind a "Generate with AI · 1 model call" lock when Cleo can edit but hasn't (`?lock=1` forces it, `?lock=0` skips it; "read the wire edition" bypasses); the Wire/Edited toggle lives in the desk caption.
+- **Listen** - live narration; tap transcript line or scrub waveform to seek; speed 0.75–1.5×. Engine: server-rendered neural audio when the live payload carries `audio` (one WAV URL per `CURA_BRIEFING` segment, from `cura serve` when the `tts` extra is installed), else Web Speech. If Web Speech is unsupported, a notice shows and the transcript stays navigable.
+- **Experience** - "The Cura Daily" as a single broadsheet sheet on a lit desk: big masthead, lead story (drop-cap double-column text + halftone photo), a right rail (In this edition / most contested / trending), the fold, then the whole edition (`allStories()`) flowing continuously as CSS-column newsprint under ruled section headers, in classic newspaper order, so the columns leave no gaps. Stories on the sheet are not links. Photos are halftone and lead-only. The sheet ends with the publisher's inline ad box, **The Nightcap** (a three-column personal column typeset from local signals: followed-topic tally, saved-story clippings, tomorrow's watchlist, Cleo's signed note; no model call), and the colophon Index. The press gate blurs the sheet behind a "Generate with AI · 1 model call" lock when Cleo can edit but hasn't (`?lock=1` forces it, `?lock=0` skips it; "read the wire edition" bypasses); the Wire/Edited toggle lives in the desk caption.
 - **Verify** - (1) **claim checker** (type a claim → grounded verdict + evidence), (2) three-source comparison.
 - **Cleo** - desktop slide-over. Grounded chat, cited, "thinking" state, **live vs demo** indicator.
 - **Saved** - reading list from bookmarks; empty state.

@@ -4,21 +4,20 @@ Third-party benchmarks (TweetEval, CNN/DailyMail) are not vendored: fetch
 them with the scripts here and point the eval CLI at the local copies. The
 project's own labelled packs (the headline stance sample, the triangulation
 annotation rounds, the clustering pairs) are tracked in this folder, so every
-result in `cura/eval/results/` can be recomputed. Document, in the report,
-exactly which split was used and its class balance.
+result in `cura/eval/results/` can be recomputed. Each results file records the split it was run on and, for the stance
+benchmarks, the class balance.
 
 ## Stance / sentiment (macro-F1 vs VADER baseline)
 
 CSV with `text,label` columns; labels `negative | neutral | positive`.
 
-- **SemEval-2017 Task 4 subtask A** - 3-class tweet sentiment; the standard
-  benchmark VADER itself is often reported on. Good for the social-media leg.
-- **A hand-labelled sample of ingested headlines** (~300, double-annotated,
-  report inter-annotator agreement) - strongest evidence, since it matches the
-  deployment distribution; also feeds the class-imbalance/bias discussion.
-- For true *stance* (target-aware) rather than sentiment: **SemEval-2016
-  Task 6** (stance in tweets) - note it uses favor/against/none, which maps to
-  positive/negative/neutral.
+- **TweetEval sentiment (SemEval-2017 Task 4 subtask A)** - 3-class tweet
+  sentiment, test split; the benchmark run used a 1,000-tweet sample fetched
+  with `python cura/eval/datasets/fetch_tweeteval_sentiment.py 1000`.
+- **A hand-labelled sample of ingested headlines** (200, labelled by the author
+  alone, blind to model output; the pack is below) - the deployment-domain check
+  reported in §5.2 of the report, with its single-annotator limitation stated there.
+
 
 Run: `python -m cura eval-stance --data path/to/stance.csv [--transformer]`
 (also reports 10-bin ECE when the classifier emits class probabilities).
@@ -35,11 +34,10 @@ copy the headline result is computed from.
 
 JSON list of `{"document": ..., "reference": ...}`.
 
-- **CNN/DailyMail** (test split, or a 200–500 doc sample for compute reasons -
-  state the sample size) - news-domain, abstractive references.
-  Fetch a sample (no extra dependencies):
+- **CNN/DailyMail** 3.0.0, test split, first 300 articles (BART on CPU caps the
+  sample; the report's §5.3 result uses exactly this sample) - news-domain,
+  human-written highlights as references. Fetch (no extra dependencies):
   `python cura/eval/datasets/fetch_cnn_dailymail.py 300`
-- **XSum** if testing one-sentence compression.
 
 Run: `python -m cura eval-summary --data path/to/pairs.json [--abstractive]`
 
@@ -80,8 +78,7 @@ and results in `cura/eval/results/tts-protocol.md`; collected ratings in
 ## User study
 
 Usefulness / trust / format preference - protocol and questionnaire in
-`cura/eval/results/user-study-protocol.md`; responses collect into
-`user-study/responses.csv` (one row per paper questionnaire, transcribed
+`cura/eval/results/user-study-protocol.md`; responses in `user-study/responses.csv` (one row per paper questionnaire, transcribed
 by the researcher). Aggregate with `python -m cura eval-user-study` -
 Likert medians/IQR per item, format rankings, contested-flag agreement,
 open answers verbatim.

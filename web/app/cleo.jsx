@@ -10,16 +10,28 @@ const { useState: useStateC, useRef: useRefC, useEffect: useEffectC } = React;
 function buildCleoKB() {
   const stories = (window.allStories ? allStories() : (window.CURA_STORIES || [])).map(s => {
     const tldr = s.tldr ? ' Key points: ' + s.tldr.join(' ') : '';
-    return `• [${s.section}] ${s.headline}. ${s.dek}${tldr} (${s.sources} sources, confidence ${s.confidence}/5: ${s.confidenceLabel}).`;
+    const outlets = (s.citations || []).map(c => c.source).filter((v, i, a) => v && a.indexOf(v) === i);
+    const who = outlets.length ? ` Outlets: ${outlets.join(', ')}.` : '';
+    const flag = s.contested ? ' Cura flags this story as CONTESTED: its sources disagree in framing.' : '';
+    return `• [${s.section}] ${s.headline}. ${s.dek}${tldr} (${s.sources} sources, confidence ${s.confidence}/5: ${s.confidenceLabel}).${who}${flag}`;
   }).join('\n');
-  // The canned Fed source-comparison belongs to the canned sample data only -
-  // grounding live Cleo in it would have her cite stories not in the edition.
-  const compare = window.CURA_LIVE ? '' : (window.COMPARE_SOURCES || []).map(c =>
+  // The source comparison: a live edition carries Cura's own (the Verify view -
+  // the stance triangulation for the most contested story, one column per
+  // outlet). The canned COMPARE_SOURCES belongs to the sample data only, so it
+  // grounds Cleo only offline - live, it would have her cite outlets not in
+  // the edition.
+  const live = window.CURA_LIVE;
+  const cmp = live ? (live.compare || null)
+                   : { headline: 'the Fed story', sources: window.COMPARE_SOURCES || [], agree: [], differ: [] };
+  const cols = (cmp && cmp.sources) || [];
+  const compare = cols.map(c =>
     `• ${c.name} (${c.lean}) — "${c.headline}". ${c.framing} Quote: ${c.quote}`
   ).join('\n');
+  const verdicts = cmp ? [...(cmp.agree || []), ...(cmp.differ || [])].map(v => `• ${v}`).join('\n') : '';
   const m = window.editionMeta ? window.editionMeta() : { dateline: 'Tuesday · Aug 27', count: 9 };
   return `TODAY'S EDITION — ${m.dateline.replace(' · ', ', ')} (${m.count} stories):\n${stories}`
-    + (compare ? `\n\nSOURCE COMPARISON for the Fed story:\n${compare}` : '');
+    + (compare ? `\n\nSOURCE COMPARISON for "${cmp.headline}" — the same story, one column per outlet, each framed by Cura's stance model:\n${compare}` : '')
+    + (verdicts ? `\nWhere the outlets agree and differ:\n${verdicts}` : '');
 }
 
 const CLEO_PERSONA =
